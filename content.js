@@ -887,7 +887,33 @@ const CONTENT_EN = {
         "Spreads that LTCM expected to narrow widened instead. The fund lost 44% in August and sought fresh capital.",
         "Concern about simultaneous liquidation brought creditors together. Fourteen firms supplied roughly $3.6 billion in September."
       ],
-      "outcome": "The recapitalisation allowed an orderly reduction of positions. The Federal Reserve coordinated the arrangement without supplying its own funds; the original owners and investors still suffered substantial losses."
+      "outcome": "The recapitalisation allowed an orderly reduction of positions. The Federal Reserve coordinated the arrangement without supplying its own funds; the original owners and investors still suffered substantial losses.",
+      "deepDive": [
+        {
+          "title": "The attraction of a convergence trade",
+          "text": "LTCM sought to profit when prices of related securities moved closer together. A small discrepancy can look attractive when instruments seem economically similar, but similarity does not make their prices identical at every moment. The expected gain may be small relative to the amount of securities held. Borrowing can magnify the return on the fund’s own capital, while also magnifying losses and dependence on lenders. The important distinction is between the possible destination of a price spread and the resources required to remain exposed along the way."
+        },
+        {
+          "title": "When several positions need the same exit",
+          "text": "The Russian crisis in August 1998 changed demand for safety and liquidity. Spreads that the fund expected to converge moved against it instead. Positions with different names can still share a dependence on orderly markets, willing counterparties, and stable financing. If many investors reduce similar risks together, selling one position can put pressure on other prices. A list of many instruments is therefore not sufficient evidence of diversification: the common funding and liquidity conditions need examination as well."
+        },
+        {
+          "title": "A loss becomes a financing problem",
+          "text": "The reported 44% August loss is not just a dramatic performance number. A smaller equity cushion makes the same remaining gross exposure larger relative to capital. Lenders and counterparties may require more protection precisely when it is difficult to sell without accepting poor prices. The chart below normalises the starting fund value to 100 and the ending value to 56. It does not claim that the fall occurred smoothly, nor does it provide a complete schedule of margin calls. Its purpose is to make the changed denominator visible."
+        },
+        {
+          "title": "What the recapitalisation did",
+          "text": "Fourteen financial institutions supplied approximately $3.6 billion in September 1998. The Federal Reserve facilitated the arrangement without lending its own money. The distinction matters: coordination by a central bank is not the same as a central-bank cash injection into the fund. Recapitalisation created room for a more orderly reduction of positions; it did not undo the losses already suffered or certify the original risk management. A rescue after severe stress is not evidence that a similar future position will receive one."
+        },
+        {
+          "title": "The question an investor can carry forward",
+          "text": "Ask two questions separately: why might this asset or spread produce a return, and what could force the position to end before that happens? The first concerns the investment thesis; the second concerns financing, redemption terms, collateral, and liquidity. A convincing answer to one cannot be used as an answer to the other. This is relevant even without personal borrowing when investing through a vehicle whose own balance sheet or withdrawal promises create those constraints."
+        }
+      ],
+      "misconception": "“The trade would have worked eventually, so the risk was acceptable.” This omits the possibility that funding runs out first. A thesis must be evaluated together with the constraints that determine whether it can remain in place.",
+      "remember": "An eventual convergence does not pay today’s cash demand.",
+      "reflection": "What would you need to know about a fund besides its forecast and past return?",
+      "responseGuide": "Examine gross exposure, borrowing and collateral terms, liquidity of holdings, and withdrawal commitments. Ask how these conditions interact during stress rather than evaluating each only in normal markets."
     },
     {
       "id": "snb",
@@ -908,7 +934,33 @@ const CONTENT_EN = {
           "title": "SNB explanation, April 2015",
           "url": "https://www.snb.ch/en/publications/communication/speeches/2015/ref_20150424_tjn"
         }
-      ]
+      ],
+      "deepDive": [
+        {
+          "title": "A policy becomes part of the environment",
+          "text": "The Swiss National Bank’s minimum rate of CHF 1.20 per euro was an important reference for businesses and investors. A participant could come to treat that boundary as a durable feature of the market, even though it depended on a policy decision and the central bank’s willingness to intervene. The resulting risk was not simply whether tomorrow’s quote would rise or fall. It also included the possibility that the mechanism supporting the observed range would change."
+        },
+        {
+          "title": "What changed on 15 January 2015",
+          "text": "The bank announced that it would discontinue the minimum exchange rate. In the same announcement it lowered the interest rate on sight deposits to −0.75%. Ending the floor and changing an interest rate are distinct policy actions; they should not be compressed into a claim that the bank stopped conducting monetary policy. The later explanation from the bank’s chairman described rapidly increasing intervention needs against euro weakness. This provides institutional context for the decision, not a promise that traders could have predicted its exact timing."
+        },
+        {
+          "title": "From a policy assumption to an execution problem",
+          "text": "When a major market reference changes abruptly, investors may all want to adjust at once. Available quotes and order-book depth can change faster than a pre-existing plan assumes. A stop instruction is an order with defined terms, not insurance against every gap or absence of liquidity. The educational point is not that every trader experienced the same fill or loss. It is that a planned exit level and an actual executable transaction are different things when the assumed environment breaks."
+        },
+        {
+          "title": "The same exchange-rate move has different consequences",
+          "text": "A currency move affects participants according to their exposure. A business receiving foreign revenue, an importer with bills to pay, an unleveraged investor, and a leveraged trader need not experience the same result. The currency in which obligations are denominated also matters. It would be misleading to infer a universal percentage loss for all participants from a single exchange-rate chart. The size and direction of each exposure, financing terms, and available hedges must be specified before calculating the impact."
+        },
+        {
+          "title": "A useful review after the event",
+          "text": "An after-the-fact explanation can make an abrupt change seem more predictable than it felt beforehand. Separate evidence that a policy faced pressure from evidence about when it would end. Then ask how the position depended on its continuation. An investment process can prepare for a discontinuity without claiming to forecast the exact announcement: it can identify concentrated dependencies, financing vulnerabilities, and the effect of imperfect execution. These are questions to investigate, not a guarantee that every loss can be avoided."
+        }
+      ],
+      "misconception": "“A central-bank floor makes a position risk-free.” A policy commitment is not a personal guarantee of a trading result, permanent availability, or a particular exit price.",
+      "remember": "When the rule changes, the range you observed may stop being the range you can trade.",
+      "reflection": "Which assumption in a financial plan depends on somebody else maintaining a rule?",
+      "responseGuide": "Identify the institution, its actual commitment, and what the position would face if that commitment changed. Distinguish a legal obligation from an expectation about future policy."
     },
     {
       "id": "knight",
@@ -923,7 +975,33 @@ const CONTENT_EN = {
         "Within about 45 minutes, the router sent millions of orders while attempting to fulfil 212 customer orders.",
         "The unwanted trades accumulated positions worth billions of dollars."
       ],
-      "outcome": "Knight lost more than $460 million. The SEC identified inadequate deployment, exposure and incident-response controls; Knight later agreed to a $12 million penalty without admitting or denying the findings."
+      "outcome": "Knight lost more than $460 million. The SEC identified inadequate deployment, exposure and incident-response controls; Knight later agreed to a $12 million penalty without admitting or denying the findings.",
+      "deepDive": [
+        {
+          "title": "The risk was in the operating system",
+          "text": "Knight Capital’s episode was not simply an analyst making a wrong forecast. The SEC described a faulty deployment that activated an older function in an order router. The firm was handling customer orders, but its technology created activity that was not the intended implementation of those orders. This distinction matters for a learner: even if an investment idea is reasonable, the machinery that turns it into transactions can create a different exposure. Strategy risk and operational risk need separate questions."
+        },
+        {
+          "title": "Warnings existed before the visible loss",
+          "text": "According to the SEC account, internal error messages were generated before the market opened, but the firm did not act on them adequately. A warning is useful only if someone recognises it, understands its significance, and can trigger an effective response. A control written in a manual is therefore not the same as a tested response under time pressure. The relevant review asks who receives a signal, what action follows, and whether the system can stop creating new exposure while the problem is investigated."
+        },
+        {
+          "title": "The speed and scale of the event",
+          "text": "Within about 45 minutes, the router generated millions of orders while attempting to fulfil 212 customer orders. The unwanted trades produced positions worth billions of dollars, and the firm ultimately lost more than $460 million. These are different quantities: an order count, a time interval, a stock of exposure, and a realised financial loss. They must not be treated as interchangeable measures. The size of customer instructions alone did not cap the exposure created by a malfunctioning process."
+        },
+        {
+          "title": "What the enforcement outcome means",
+          "text": "The SEC identified weaknesses in deployment, exposure limits, and incident-response controls. Knight later agreed to a $12 million penalty without admitting or denying the findings. The penalty was not the amount of trading loss, and paying it did not reverse the unwanted trades. For educational purposes, the enforcement account is valuable because it identifies failures that can be examined and tested, rather than describing the entire episode only as bad luck or a collapse in confidence."
+        },
+        {
+          "title": "The connection to a personal investment process",
+          "text": "An individual investor does not operate Knight’s infrastructure, so the case should not be copied literally into a household checklist. The transferable question is whether an intended instruction can turn into an unintended position. Examples to investigate include order units, duplicate instructions, automation permissions, and what happens if a platform behaves unexpectedly. Operational checks complement financial judgment; they do not establish whether the investment itself is attractive. Both the idea and its implementation need a review."
+        }
+      ],
+      "misconception": "“A tested trading idea cannot cause an unexpected position.” A model and its production implementation are different systems. Errors can occur in deployment and order handling even when the model itself behaves as designed.",
+      "remember": "The instruction you meant to give is not always the exposure you end up holding.",
+      "reflection": "What would count as evidence that a stop procedure works, rather than merely exists?",
+      "responseGuide": "Look for a defined trigger, a responsible person or mechanism, and a test showing that new exposure stops under a realistic failure condition. Consider how to distinguish stopping new orders from unwinding positions already created."
     },
     {
       "id": "buffett",
@@ -938,7 +1016,33 @@ const CONTENT_EN = {
         "The comparison continued through the agreed decade rather than stopping after that initial result.",
         "Buffett’s final table reported a 125.8% gain for the index fund; none of the five funds-of-funds matched it."
       ],
-      "outcome": "One comparison fund was liquidated in 2017, a fact noted in the table. The wager illustrates costs and evaluation periods, not a universal result for every manager or decade."
+      "outcome": "One comparison fund was liquidated in 2017, a fact noted in the table. The wager illustrates costs and evaluation periods, not a universal result for every manager or decade.",
+      "deepDive": [
+        {
+          "title": "What exactly was being compared?",
+          "text": "The wager compared an S&P 500 index fund with five funds-of-funds selected by Protégé Partners over 2008–2017. A fund-of-funds invests through underlying funds rather than holding only an ordinary basket of shares directly. Its structure can introduce more than one layer of expenses. The question was not whether an active manager could ever beat an index in a month or a year. It concerned the returns retained by investors across a specified decade and a specified set of alternatives."
+        },
+        {
+          "title": "The first year did not decide the wager",
+          "text": "All five funds-of-funds outperformed the index fund during the difficult opening year of 2008. Someone selecting only that observation could have told a very different story from the final ten-year result. That is why the evaluation period is part of the hypothesis rather than a detail to choose later. Keeping the originally agreed horizon does not mean ignoring risk along the way, but it avoids announcing a winner by stopping the comparison at whichever date favours the preferred argument."
+        },
+        {
+          "title": "How to read the final table",
+          "text": "Buffett’s 2017 letter reports a 125.8% cumulative gain for the index fund and lower reported gains for each of the five comparison funds. The chart reproduces those few reported numerical observations in an original drawing. They are cumulative gains, not annual returns. A 125.8% gain turns a normalised starting value of 100 into 225.8; it does not mean the investment earned 125.8% in each year. Fund D was liquidated in 2017, a qualification that belongs next to the data rather than hidden from the comparison."
+        },
+        {
+          "title": "Costs matter, but the comparison is not a universal law",
+          "text": "The wager highlights the difference between the return an investment activity generates and the return its investors actually keep. Fees can compound into a substantial difference over time. However, these funds, this benchmark, and this decade do not represent every possible strategy or future market. A claim that all active management always fails would exceed the evidence. An investor still needs to consider an appropriate benchmark, the risks taken, the terms of access, and the full costs of the available options."
+        },
+        {
+          "title": "What belongs in a fair comparison?",
+          "text": "Use a common starting period, comparable reporting conventions, and the returns available to the investor after the relevant charges. Avoid mixing a cumulative return with an annual percentage, a surviving fund with a disappearing one, or a gross marketing figure with a net benchmark figure. Differences in risk and mandate may also matter even when one final number is larger. The book connection is to independent judgment: an impressive professional story is something to examine, not a replacement for the comparison itself."
+        }
+      ],
+      "misconception": "“The index fund gained 125.8%, so that was its annual return.” The figure covers the entire wager. Likewise, one winning historical comparison does not guarantee the same ranking in another period.",
+      "remember": "Compare what investors kept, over the period agreed before the result.",
+      "reflection": "What three labels would you need beside any performance chart before comparing funds?",
+      "responseGuide": "At minimum, identify the period, whether the number is cumulative or annualised, and which fees are included. Also check the benchmark, risk differences, and how closed funds are treated."
     },
     {
       "id": "flash",
@@ -953,7 +1057,33 @@ const CONTENT_EN = {
         "During the recovery, some individual stocks and ETFs traded at extremely low prices before rebounding.",
         "Staff examined full order books and found that futures buying depth had fallen dramatically; equity liquidity problems followed."
       ],
-      "outcome": "The price recovery did not erase the disruption. The investigation used trading records and liquidity data to distinguish the sequence of events from stories based only on a chart."
+      "outcome": "The price recovery did not erase the disruption. The investigation used trading records and liquidity data to distinguish the sequence of events from stories based only on a chart.",
+      "deepDive": [
+        {
+          "title": "A market can have a closing price and still break intraday",
+          "text": "On 6 May 2010, US equity and futures markets suffered a sharp, brief disruption. The reported account describes E-mini S&P 500 futures and SPY falling about 5% within five minutes and recovering over roughly the next ten. Some individual securities traded at extreme prices during the episode. A chart containing only daily closes could hide much of that experience. The investor who needed to trade during the disruption faced a different problem from the reader studying only the end-of-day result."
+        },
+        {
+          "title": "Liquidity is not the same thing as a last traded price",
+          "text": "A last price records a completed transaction. Market depth describes quantities available for possible new transactions at different prices. The two can tell very different stories when orders are withdrawn, filled quickly, or submitted under stress. The SEC staff analysis examined order books and noted a dramatic decline in futures buying depth before related equity liquidity problems. That is why an explanation needs a sequence of trading conditions, not just the shape of a line joining a few prices."
+        },
+        {
+          "title": "Why recovery does not erase execution risk",
+          "text": "Suppose a holder must sell during a short disruption because of a financing obligation or an urgent liquidity need. A recovery several minutes later cannot automatically repair the transaction already executed. This is a general mechanism, not a claim that all participants sold at the worst point. Market orders and limit orders also address different priorities: seeking execution is not the same as specifying a minimum acceptable price. Either can leave a risk unresolved when the market is changing quickly."
+        },
+        {
+          "title": "How to avoid an overconfident explanation",
+          "text": "It is tempting to assign a complex event to one dramatic trade or one type of participant. The staff account instead motivates studying interactions between trading activity, available depth, and the timing of the disturbance across markets. A five-minute fall does not by itself reveal every causal contribution. A careful reader distinguishes what the cited analysis reports from a broader theory about electronic markets. The event does not establish that every fast move has the same cause, or that every apparent recovery is easy to trade."
+        },
+        {
+          "title": "A practical lesson without a timing prediction",
+          "text": "Ask how the planned transaction changes if only a fraction of normal depth is available. Examine position size relative to liquidity, the order’s actual terms, and any obligation that could force action at a poor moment. These questions concern the resilience of a plan, not predicting the next flash crash. The learning-lab price paths can illustrate why identical ending values conceal different journeys, but those invented paths are not a reconstruction of the 6 May tape. We do not draw a fabricated historical stock-price series for this case."
+        }
+      ],
+      "misconception": "“The market recovered, so nobody faced a serious risk.” Closing or later prices do not describe every transaction during the event. Execution timing and constraints change the outcome.",
+      "remember": "A recovered price is not a reversed transaction.",
+      "reflection": "What can a daily chart leave out that matters to somebody who must sell now?",
+      "responseGuide": "It can omit intraday extremes, quantities available at each price, spreads, and whether an order could execute. Ask for appropriately timed trading and depth data rather than reading those details into the daily close."
     },
     {
       "id": "gme",
@@ -968,7 +1098,33 @@ const CONTENT_EN = {
         "Those purchases were a small part of overall buying, and prices stayed elevated after their direct effect would have faded.",
         "Staff did not find evidence that a gamma squeeze explained GME’s January episode."
       ],
-      "outcome": "The report attributed the sustained weeks-long rise to positive sentiment rather than short covering alone. This is a staff interpretation of a specific episode, not a complete account of every participant’s private motives."
+      "outcome": "The report attributed the sustained weeks-long rise to positive sentiment rather than short covering alone. This is a staff interpretation of a specific episode, not a complete account of every participant’s private motives.",
+      "deepDive": [
+        {
+          "title": "Who was taking part?",
+          "text": "GameStop’s January 2021 episode brought together investors with very different motives: people attracted to a possible business turnaround, short sellers expecting weakness, traders responding to momentum, and participants drawn by online discussion. Brokers, market makers, and clearing arrangements formed the infrastructure around those trades. Calling the whole event a contest between two uniform camps hides this variety. A person buying a share might be expressing a valuation view, closing a short, hedging another position, or simply following a price move. The chart alone cannot identify which motive drove each transaction."
+        },
+        {
+          "title": "Separate the story from the trading evidence",
+          "text": "A short seller must eventually return borrowed shares, and buying to close can contribute to demand when prices rise. That mechanism is real, but it does not establish that every purchase during a rally is forced covering. SEC staff examined accounts and transactions rather than assuming that a steep chart proved a complete explanation. They found periods in which short covering contributed, while attributing the sustained weeks-long rise to positive sentiment rather than short covering alone. Their conclusion is about this episode; it is not a universal rule for every highly shorted stock."
+        },
+        {
+          "title": "What the daily chart does—and does not—show",
+          "text": "The chart below follows selected historical daily closing prices through the surge and early reversal. A daily close is one observation at the end of a session, not the highest or lowest transaction that day. It conceals large intraday swings and says nothing by itself about an individual investor’s execution. The original 2021 price basis and the later four-for-one split-adjusted basis describe the same proportional changes. Comparing a pre-split headline with an adjusted chart without converting the units can create a fourfold discrepancy that has nothing to do with a new market move."
+        },
+        {
+          "title": "Why access and financing also mattered",
+          "text": "The episode also drew attention to trading restrictions, broker risk controls, and the demands of clearing and settlement. A broker’s obligations and an investor’s desire to trade are different questions. Restrictions can affect available actions without, by themselves, proving a particular explanation for the entire price move. This is why a complete investment review should separate price risk, short-sale or margin obligations, and the ability to transact. The SEC report is a starting point for studying these mechanisms, not a promise that access or liquidity will be uninterrupted next time."
+        },
+        {
+          "title": "How to read the aftermath",
+          "text": "A later decline does not reveal one single cause of the earlier rise, just as an earlier gain does not validate every bullish explanation. Different entry prices and holding periods produce radically different outcomes. Someone comparing only the first and last point can miss the pressure in between; someone highlighting only the peak can make an outcome look easier to capture than it was. For this library, the durable lesson is to distinguish a documented price, an interpretation of trading flows, and a personal decision made under uncertainty."
+        }
+      ],
+      "misconception": "“The price rose sharply, therefore every buyer was a short seller being squeezed.” This jumps from an observable result to a complete causal claim. Check the report’s trading evidence, the timing of covering, and other demand before accepting it.",
+      "remember": "A price is an observation. A squeeze is a mechanism to investigate.",
+      "reflection": "If you could see only the chart and not the SEC report, which explanations could you support—and which would still be guesses?",
+      "responseGuide": "You can identify dates, closing prices, and changes between them. You cannot identify every buyer’s motive, the exact contribution of covering, or the price at which you personally could have traded. Request transaction and liquidity evidence for those additional claims."
     },
     {
       "id": "spiva",
@@ -983,7 +1139,33 @@ const CONTENT_EN = {
         "It accounts for funds that disappear rather than comparing only those still present at the end.",
         "It also uses relevant benchmarks and reports results over specified horizons."
       ],
-      "outcome": "Including disappeared funds reduces survivorship bias. It does not make every benchmark choice perfect; it makes the population being evaluated more explicit and harder to improve by hindsight."
+      "outcome": "Including disappeared funds reduces survivorship bias. It does not make every benchmark choice perfect; it makes the population being evaluated more explicit and harder to improve by hindsight.",
+      "deepDive": [
+        {
+          "title": "This is a method, not a single market crash",
+          "text": "SPIVA is a family of scorecards comparing active funds with relevant benchmarks. The case in this library concerns the published methodology, especially its treatment of funds that disappear. It is not a claim that one performance percentage applies to all countries, asset classes, or years. The question is how to construct a comparison that does not quietly become more flattering when part of the original population vanishes. That question is also relevant to trading journals and stories about celebrated investors."
+        },
+        {
+          "title": "The missing-fund problem",
+          "text": "A fund can close or merge, leaving it absent from a list of products available today. If a researcher starts with today’s list and looks backward, the comparison can exclude part of the experience faced by someone choosing at the start of the period. The remaining funds may not represent the original set of opportunities. SPIVA addresses survivorship bias by retaining the starting universe. This is a rule about the population being measured; it is not an accusation that every fund closure indicates misconduct or failure."
+        },
+        {
+          "title": "The denominator changes the story",
+          "text": "Consider a clearly hypothetical group of 100 starting funds. If 20 disappear, evaluating only the remaining 80 answers a different question from evaluating the full original group. Knowing that 30 of the survivors beat a benchmark would still not, by itself, tell you how every original fund fared or how the disappeared funds should be classified. You need the methodology and their outcomes. The arithmetic illustrates the selection problem, not an actual SPIVA score for any market. No invented percentage is presented as a reported finding."
+        },
+        {
+          "title": "A benchmark is part of the question",
+          "text": "A fund’s result is meaningful relative to an appropriate alternative and a defined horizon. Differences in market exposure, asset class, currency, and mandate can affect which comparison makes sense. Avoid comparing a deliberately different risk profile with an unrelated index and then interpreting the gap as pure skill or pure failure. The existence of a published methodology helps make these choices visible, but it does not remove the need to read the scope and qualifications of the particular scorecard being discussed."
+        },
+        {
+          "title": "Bring the method back to your own decisions",
+          "text": "A notebook containing only successful trades has the same structural weakness as a fund list containing only survivors. Record decisions before outcomes are known and retain the uncomfortable entries. When studying a famous investor, ask what happened to comparable investors who are no longer mentioned. This does not mean success is always luck or that analysis is useless. It means the claim becomes more informative when its sample, exclusions, costs, and comparison rule are visible to the reader."
+        }
+      ],
+      "misconception": "“Today’s successful funds are the full set that an investor could originally choose.” That silently drops funds that disappeared. A current product list and the original opportunity set are not the same dataset.",
+      "remember": "Before counting the winners, ask who went missing.",
+      "reflection": "How would you change a trading diary that contains only positions you still feel proud of?",
+      "responseGuide": "Reconstruct the starting set of decisions, retain closed and unsuccessful positions, and use a common comparison rule. Mark missing information explicitly instead of assuming that absent observations were harmless."
     }
   ]
 };

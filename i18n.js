@@ -187,7 +187,6 @@ const UI_ZH = {
   "The 2010 Wiley edition with commentary by Jon D. Markman was consulted for context. The book, modern annotations, publisher artwork, and third-party documents are not reproduced or offered for download. Chapter titles are our own study labels. Book and organisation names identify the works and cases discussed; they do not imply affiliation, permission, or endorsement.": "編寫時參考了附Jon D. Markman評論的2010年Wiley版作背景資料。本網站不重印或提供原書、現代註釋、出版社美術或第三方文件下載。課題標題為自訂學習標籤。書名與機構名稱只用來識別討論對象，不代表從屬關係、授權或認可。",
   "Illustrations are AI-generated conceptual images, not historical photographs, book-cover scans, or evidence of the events. Case summaries link to documentary sources; the analysis and comparisons are our interpretations. A source link is not permission to reuse the linked material. The same case may appear in several chapters with a different learning question.": "插圖為AI生成概念圖，並非歷史照片、書封掃描或事件證據。案例摘要附資料來源；分析與比較屬本網站解讀。附上來源連結不代表獲准再使用該資料。同一案例可在不同章節配合不同學習問題。",
   "This website provides general education and historical discussion. It does not assess your finances, objectives, experience, or risk tolerance, and does not recommend that you buy, sell, or hold any security or use any strategy. It is not a brokerage, advisory service, or offer of an investment product. If you need advice suited to your circumstances, consult an appropriately authorised professional.": "本網站提供一般教育及歷史討論，不評估你的財政狀況、目標、經驗或風險承受程度，也不建議你買入、沽出、持有任何證券或採用任何策略。本網站不是經紀、投資顧問服務或投資產品要約。如需切合個人情況的意見，請諮詢具適當資格及授權的專業人士。",
-  "Investments can lose value. Leverage and uncovered short selling can produce losses beyond the initial investment. Historical results do not guarantee future returns. Exercises, calculators, and the interactive price chart use explicitly hypothetical assumptions; they are not live prices, backtests, performance claims, or forecasts. They omit real-world factors described next to each model.": "投資可能貶值。槓桿及未作對沖的沽空，可能造成超過初始投入的損失。歷史結果不保證未來回報。練習、計算器及互動價格圖使用明確的假設，並非即時報價、回測、績效聲稱或預測。各模型旁均說明未納入的現實因素。",
   "Historical narratives and public reports can be incomplete or contested. Source links are provided so readers can examine the evidence. This site is not a complete financial-planning course and should not be the sole basis for a financial decision.": "歷史敘事與公開報告可能不完整，亦可能有爭議。來源連結供讀者自行檢視證據。本網站並非完整理財課程，也不應成為財務決策的唯一依據。",
   "Language preference, reading progress, bookmarks, and optional notes are saved in this browser. The site does not send these entries to an application server or sync them between devices. Anyone using the same browser profile may be able to read them. Avoid entering account details, passwords, or sensitive personal and financial information.": "語言選擇、閱讀進度、收藏及自選筆記儲存在此瀏覽器，不會由本網站傳送至應用程式伺服器，也不會跨裝置同步。使用同一瀏覽器設定檔的人可能讀到。請勿輸入戶口資料、密碼或敏感個人及財務資訊。",
   "Export your notes before clearing browser data or moving to a different website address. Browser storage is tied to the website origin, so notes do not automatically move from GitHub Pages to a Cloudflare address. The controls below delete only this learning library’s saved information; they do not clear unrelated website data.": "清除瀏覽器資料或轉用另一網址前，請先匯出筆記。瀏覽器儲存與網站來源綁定，筆記不會自動由GitHub Pages搬到Cloudflare網址。下方按鈕只刪除此學習網站的儲存資料，不會清除無關網站資料。",
@@ -197,7 +196,15 @@ const UI_ZH = {
   "GitHub privacy statement": "GitHub私隱聲明",
   "Delete this library’s notes, progress, bookmarks, and saved language? Export your notes first if you want to keep them.": "確定刪除此網站的筆記、進度、收藏及語言設定？如需保留筆記，請先匯出。",
   "Saved data deleted. Your current language stays active until you leave this page.": "儲存資料已刪除。目前語言會保留至你離開此頁。",
-  "Session data cleared. Browser storage could not be accessed; use browser settings to remove any persistent site data.": "本次使用資料已清除。無法存取瀏覽器儲存；請透過瀏覽器設定刪除可能仍保留的網站資料。"
+  "Session data cleared. Browser storage could not be accessed; use browser settings to remove any persistent site data.": "本次使用資料已清除。無法存取瀏覽器儲存；請透過瀏覽器設定刪除可能仍保留的網站資料。",
+  "Investments can lose value. Leverage and uncovered short selling can produce losses beyond the initial investment. Historical results do not guarantee future returns. Learning-lab models and worked examples use explicitly hypothetical assumptions. Case charts separately label archived historical closing prices, reported figures, or calculations from those figures, with source and scope notes. None is a live feed, strategy backtest, recommendation, or forecast. Models omit the real-world factors described alongside them.": "投資可能貶值。槓桿及未作對沖的沽空，可能造成超過初始投入的損失。歷史結果不保證未來回報。實驗室模型及計算示例使用明確假設。案例圖表則分別標示存檔歷史收市價、已報告數字或根據該等數字作出的計算，並附來源及範圍說明。全部均非即時數據、策略回測、推薦或預測。模型未包括的現實因素已在旁列明。",
+  "Read the full case": "閱讀完整案例",
+  "LOOK CLOSER · THE MECHANISM AND THE LIMITS": "深入理解・機制與局限",
+  "A common misunderstanding": "一個常見誤解",
+  "ONE IDEA TO REMEMBER": "記住這個觀念",
+  "Think it through": "想深一層",
+  "Reveal a response guide": "查看思考方向",
+  "Case not found": "找不到案例"
 };
 function tr(text) {
  if (lang !== 'zh-HK') return text;
@@ -211,7 +218,7 @@ function tr(text) {
  [/^MODULE (\d+)$/,(_,n)=>`單元 ${n}`],
  [/^(\d+) lessons$/,(_,n)=>`${n} 課`],
  [/^(\d+) chapters$/,(_,n)=>`${n} 章`],
- [/^LESSON ([\d-]+) · CHAPTER (\d+) · ABOUT 6 MINUTES$/,(_,id,n)=>`第 ${id} 課・第${n}章・約6分鐘`],
+ [/^LESSON ([\d-]+) · CHAPTER (\d+) · ABOUT 10 MINUTES$/,(_,id,n)=>`第 ${id} 課・第${n}章・約10分鐘`],
  [/^Chapter (\d+) · (.+)$/,(_,n,title)=>`第${n}章・${title}`],
  [/^Read the source · (.+)$/,(_,source)=>`閱讀來源・${source}`],
  [/^Stage (\d+)$/,(_,n)=>`階段 ${n}・按此展開`],
