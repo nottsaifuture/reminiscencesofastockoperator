@@ -38,10 +38,6 @@ const CONTENT_EN = {
       "chapter": 1,
       "title": "Observe before you speculate",
       "desc": "Begin with a record, not a prediction.",
-      "pages": [
-        22,
-        24
-      ],
       "context": "In Chapter I, the young Livingston works at a quotation board and keeps a notebook of price movements. Before his first small Burlington speculation, he compares a suggested trade with his own observations. The episode presents speculation as an attempt to test an idea, although his early success soon encourages larger bets.",
       "analysis": "A written forecast creates a record that memory cannot quietly improve. But noticing a repeated pattern is only a starting point: a small sample, selective recall, or a changing market can make an apparent edge disappear. An investor can adopt the discipline of recording reasons without copying Livingston’s speculative position sizes.",
       "case": "spiva",
@@ -77,10 +73,6 @@ const CONTENT_EN = {
       "chapter": 2,
       "title": "A quotation is not an execution",
       "desc": "The market you can observe is not always the market you can trade.",
-      "pages": [
-        50,
-        52
-      ],
       "context": "Chapter II takes Livingston from bucket shops to a New York exchange broker. He wants to be close to the source of quotations, yet discovers that his old setting and real exchange transactions are different. He also recognises that needing action every day is itself a source of mistakes.",
       "analysis": "A screen price does not promise an available quantity at that price. Delay, spreads, fees, and order size turn a theoretical decision into an actual result. Evaluate an investment process after realistic implementation costs. A limit order controls price but may not execute; a market order prioritises execution but does not fix the price.",
       "case": "flash",
@@ -116,10 +108,6 @@ const CONTENT_EN = {
       "chapter": 3,
       "title": "Paper profits are not a complete test",
       "desc": "Money at risk changes both execution and behaviour.",
-      "pages": [
-        82,
-        84
-      ],
       "context": "Chapter III contrasts imaginary trading with the pressure of committing actual money. Livingston describes losses as a source of experience and rejects a permanent identity as either a bull or a bear. His confidence is part of the narrative, not independent proof of a reliable strategy.",
       "analysis": "A simulation can test rules and arithmetic without testing all the emotions, delays, or financing constraints of a live position. This does not mean a learner must risk money to learn. It means the claims made for a simulation should be limited to what it actually models. Include adverse conditions and costs before drawing conclusions.",
       "case": "knight",
@@ -155,10 +143,6 @@ const CONTENT_EN = {
       "chapter": 4,
       "title": "Who controls the rules?",
       "desc": "Counterparty and venue risks belong in your analysis.",
-      "pages": [
-        112,
-        114
-      ],
       "context": "In Chapter IV, Livingston returns to the bucket shops to rebuild a stake. Shops that know him refuse his business, and using another person does not solve his access problem. The episode shows how dependent his early method is on the rules and willingness of the other side.",
       "analysis": "An apparent trading advantage is incomplete if the venue can restrict access, change terms, or fail to meet its obligations. Modern regulated brokers differ substantially from historical bucket shops, but investors still need to understand custody, settlement, withdrawal rules, and the legal entity holding their assets. Do not treat this episode as advice to evade restrictions.",
       "case": "snb",
@@ -194,10 +178,6 @@ const CONTENT_EN = {
       "chapter": 5,
       "title": "Do not force a pattern",
       "desc": "A familiar chart can conceal unfamiliar conditions.",
-      "pages": [
-        140,
-        142
-      ],
       "context": "Chapter V questions an overly rigid devotion to tape reading. Livingston describes the limits of mechanical chart claims and emphasises how a stock actually behaves. His account invites attention to changed conditions, rather than the assumption that a previous pattern must repeat.",
       "analysis": "An explanatory story can fit the past much more easily than it predicts the future. Specify a rule before testing it, then examine observations outside the period used to design it. The book’s qualitative judgments are not a validated modern trading algorithm. For an investor, the transferable habit is to ask what evidence would overturn an attractive explanation.",
       "case": "gme",
@@ -233,10 +213,6 @@ const CONTENT_EN = {
       "chapter": 6,
       "title": "Treat intuition as a question",
       "desc": "A memorable hunch is not a complete record.",
-      "pages": [
-        164,
-        166
-      ],
       "context": "Chapter VI describes sudden impulses around Livingston’s trading, including his Union Pacific episode in 1906. The narration gives intuition considerable weight. A reader must distinguish what the narrator remembers from evidence that those impulses could reliably forecast events.",
       "analysis": "Intuition may compress experience, but it can also express anxiety or selective memory. Convert a feeling into observable claims where possible. Ask how often similar feelings occurred without a useful result. A surprise that makes one trade profitable does not prove the trader could consistently foresee surprises.",
       "case": "snb",
@@ -272,10 +248,6 @@ const CONTENT_EN = {
       "chapter": 7,
       "title": "Add exposure with a reason",
       "desc": "A better price and a better decision are different things.",
-      "pages": [
-        197,
-        199
-      ],
       "context": "Chapter VII describes Livingston’s preference for adding when prices move in his favour rather than automatically buying more after a decline. He also distinguishes understanding the general market from seeking a tip on a particular stock. This is his speculative method, not a rule suitable for every investor.",
       "analysis": "Averaging down lowers a cost basis but increases exposure. Adding to a winner also increases exposure and can amplify a reversal. Neither action is justified solely by the direction of price. A long-term investor should revisit valuation, portfolio concentration, and risk capacity; a trader should revisit the strategy’s entry and exit conditions.",
       "case": "ltcm",
@@ -311,10 +283,6 @@ const CONTENT_EN = {
       "chapter": 8,
       "title": "Patience needs an investment thesis",
       "desc": "Holding on and refusing to reconsider can look alike.",
-      "pages": [
-        213,
-        215
-      ],
       "context": "In Chapter VIII, Livingston connects his observations with broader market conditions. He recalls Partridge’s emphasis on remaining positioned in a bull market and recognises the importance of larger movements. The narrative shifts attention from each small fluctuation to the wider thesis.",
       "analysis": "Patience is useful when it follows a reasoned horizon, not when it excuses ignoring new evidence. Define what you expect, how long the idea needs, and what would invalidate it. A long holding period does not rescue a defective investment. Equally, reacting to every small move can prevent a sound long-term plan from being tested.",
       "case": "buffett",
@@ -350,10 +318,6 @@ const CONTENT_EN = {
       "chapter": 9,
       "title": "A rally does not settle the liquidity question",
       "desc": "Price strength and financial resilience are separate observations.",
-      "pages": [
-        237,
-        239
-      ],
       "context": "Chapter IX opens with Livingston interrupting a fishing trip after reading about a sharp market rally. He believes monetary conditions still matter more than the rebound. The chapter places trading judgments within the surrounding pressure on money and credit.",
       "analysis": "A rising price is evidence of transactions, not proof that funding is secure. Investors should distinguish the value of an asset from the financing of the position holding it. Selling under pressure can occur before a long-term view is resolved. This is especially relevant to leveraged holdings and vehicles with redemption demands.",
       "case": "ltcm",
@@ -389,10 +353,6 @@ const CONTENT_EN = {
       "chapter": 10,
       "title": "Make mistakes specific",
       "desc": "A useful review changes a process, not just a mood.",
-      "pages": [
-        265,
-        267
-      ],
       "context": "Chapter X observes that a speculator can recognise a mistake and still repeat something closely related. Livingston distinguishes accepting a loss from remaining wrong, and acknowledges that money and vanity are both involved. The passage is a reminder that identifying an error is not the same as changing behaviour.",
       "analysis": "A review should identify the decision, the information available at the time, and the control that would have helped. Avoid explaining everything with hindsight. A good outcome can result from a weak process, while a sound decision can lose money. Record both so that a review does not reward luck and punish uncertainty.",
       "case": "knight",
@@ -428,10 +388,6 @@ const CONTENT_EN = {
       "chapter": 11,
       "title": "Size changes the exit",
       "desc": "A small position’s experience may not scale.",
-      "pages": [
-        286,
-        288
-      ],
       "context": "Chapter XI returns to Livingston’s large grain positions after the 1907 panic. His discussion of wheat and corn places position size and the difficulty of handling large interests at the centre of the story. The existence of a market price does not mean a large position can be closed effortlessly.",
       "analysis": "Liquidity is a relationship between an order and available counterparties. A method that works for a small account may change when its orders become a meaningful share of trading. For fund investors, this matters when a vehicle promises quick withdrawals while owning assets that are difficult to sell.",
       "case": "flash",
@@ -467,10 +423,6 @@ const CONTENT_EN = {
       "chapter": 12,
       "title": "Expertise is not permission to stop thinking",
       "desc": "Separate respect for a person from evidence for a position.",
-      "pages": [
-        312,
-        314
-      ],
       "context": "Chapter XII introduces Percy Thomas, a cotton expert Livingston admires. The chapter examines the influence of a persuasive and knowledgeable person on Livingston’s independent judgment. The caution is not that outside knowledge is useless, but that adopting another person’s conviction can obscure responsibility for one’s own decisions.",
       "analysis": "Ask what an expert knows, how that knowledge connects to the claim, and what might make the conclusion wrong. Domain knowledge does not automatically establish the timing, size, or suitability of a trade. Nor does disagreeing with an expert prove independence: the objective is an evidence-based judgment, not automatic contrarianism.",
       "case": "buffett",
@@ -506,10 +458,6 @@ const CONTENT_EN = {
       "chapter": 13,
       "title": "Protect the person making the decision",
       "desc": "Stress changes the quality of judgment.",
-      "pages": [
-        342,
-        344
-      ],
       "context": "Chapter XIII opens with Livingston broke, indebted, and unable to reason calmly. Having become accustomed to large positions, he finds smaller trading psychologically difficult. His reflections acknowledge that experience does not make a person immune to pressure, pride, or changing mental conditions.",
       "analysis": "A financial loss can become a decision-making problem when the need to recover it determines the next action. Reducing activity or pausing can protect the process. For an investor, an appropriate plan also respects emergency cash needs and the ability to tolerate uncertainty; a paper return is not the only relevant outcome.",
       "case": "ltcm",
@@ -545,10 +493,6 @@ const CONTENT_EN = {
       "chapter": 14,
       "title": "The market does not owe you an opportunity",
       "desc": "Needing a return is not evidence that one is available.",
-      "pages": [
-        366,
-        368
-      ],
       "context": "Chapter XIV describes lean years, mounting debt, and Livingston’s attempts to force profits from unpromising conditions. He presents the need to rebuild a stake as a pressure that can pull a trader into activity without a sufficient opportunity.",
       "analysis": "A required return and an available return are different concepts. If a plan requires implausibly high gains, examine spending, contributions, time horizon, or objectives instead of treating the target as a forecast. Waiting also has risks, including inflation and missed returns, so it should follow a considered plan rather than fear.",
       "case": "buffett",
@@ -584,10 +528,6 @@ const CONTENT_EN = {
       "chapter": 15,
       "title": "Prepare for discontinuity",
       "desc": "Not every loss comes from a gradually changing price.",
-      "pages": [
-        397,
-        399
-      ],
       "context": "Chapter XV distinguishes ordinary uncertainty from events and counterparties that frustrate the narrator’s expectations of fair dealing. Livingston admits the existence of surprises that cannot be forecast precisely. His account is also a perspective from an earlier legal and market environment.",
       "analysis": "Risk plans should include gaps, unavailable liquidity, and dependencies that can change abruptly. A stop instruction is not a promise of an exact exit price. For a diversified investor, resilience can involve cash reserves, controlled leverage, and avoiding a single point of failure; it cannot mean eliminating all uncertainty.",
       "case": "snb",
@@ -623,10 +563,6 @@ const CONTENT_EN = {
       "chapter": 16,
       "title": "Ask why the tip is reaching you",
       "desc": "Attention can serve the seller’s objective.",
-      "pages": [
-        417,
-        419
-      ],
       "context": "Chapter XVI examines the appetite for tips and the way recipients become distributors. The Borneo Tin discussion connects market promotion with the need to place shares. The narrator’s interest is not just whether a rumour is true, but how the circulation of a story serves those behind it.",
       "analysis": "Investigate incentives, ownership, compensation, and the quality of the underlying evidence. A widely shared idea is not necessarily false, but popularity is not independent confirmation when many people repeat the same source. Distinguish a company’s operating prospects from the marketing of its shares.",
       "case": "gme",
@@ -662,10 +598,6 @@ const CONTENT_EN = {
       "chapter": 17,
       "title": "Explain the signal, not the legend",
       "desc": "A dramatic story can hide an ordinary decision process.",
-      "pages": [
-        442,
-        444
-      ],
       "context": "Chapter XVII opens with a friend’s story attributing Livingston’s sale to a black cat and a mysterious hunch. Livingston distinguishes that legend from his own account of observations and warning signs. Even his explanation of intuition remains a personal interpretation rather than a measured forecasting record.",
       "analysis": "When reviewing a decision, reconstruct the information available beforehand. Avoid replacing analysis with a memorable anecdote, whether it celebrates genius or blames bad luck. The question for learning is which observations were useful, what alternatives existed, and whether the same method can be assessed across multiple decisions.",
       "case": "flash",
@@ -701,10 +633,6 @@ const CONTENT_EN = {
       "chapter": 18,
       "title": "Understand a squeeze without assuming one",
       "desc": "Short selling creates obligations as well as opinions.",
-      "pages": [
-        468,
-        470
-      ],
       "context": "Chapter XVIII returns to the tactics of covering short positions and describes the market in Tropical Trading. Livingston discusses how concentrated interests can put pressure on traders who must buy back shares. This is a historical account, not a blueprint for manipulating a modern market.",
       "analysis": "A short position can lose more than the original sale proceeds because a stock price has no fixed upper bound. Borrow availability, fees, and margin demands add constraints. But a rapidly rising price is not sufficient evidence that forced covering explains the whole move; identifying the mechanism requires more than a label.",
       "case": "gme",
@@ -740,10 +668,6 @@ const CONTENT_EN = {
       "chapter": 19,
       "title": "Markets have rules—and the rules evolve",
       "desc": "Historical description is not modern permission.",
-      "pages": [
-        485,
-        487
-      ],
       "context": "Chapter XIX discusses the meaning of manipulation and the challenge of buying or selling large blocks. Livingston also notes that many earlier practices had become obsolete, impractical, or illegal even in his own era. That warning is central to reading these chapters responsibly.",
       "analysis": "Use the narrative to understand incentives and market impact, not to copy conduct. Legitimate order execution and creating a false appearance of activity are different things. Modern rules and enforcement must be checked in their own right. The investor’s question is whether observed demand is informative and whether the market’s controls are credible.",
       "case": "knight",
@@ -779,10 +703,6 @@ const CONTENT_EN = {
       "chapter": 20,
       "title": "A story is not a market-impact model",
       "desc": "Large transactions require analysis beyond folklore.",
-      "pages": [
-        519,
-        521
-      ],
       "context": "Chapter XX looks back at famous operators and Livingston’s early lack of experience with manipulation. He distinguishes informed analysis from the guesses and suspicions that circulate around such figures. The narrative invites attention to how a large interest meets actual market demand.",
       "analysis": "An investor should ask who is transacting, what quantity can be absorbed, and what information a trade really conveys. A famous participant’s involvement does not fix the value of the asset. Large reported holdings may be stale, partial, hedged, or tied to objectives unlike yours.",
       "case": "spiva",
@@ -818,10 +738,6 @@ const CONTENT_EN = {
       "chapter": 21,
       "title": "Activity does not establish value",
       "desc": "A market can become lively without improving the business.",
-      "pages": [
-        556,
-        558
-      ],
       "context": "Chapter XXI uses Imperial Steel as a concrete narrative of building trading activity and increasing a stock’s market price. The annotated edition identifies uncertainty about the underlying historical company. The safe reading is to treat the named episode as part of the novel rather than an independently verified corporate case.",
       "analysis": "Separate business performance, share price, and trading volume. Each can affect the others, but none is a complete substitute for the rest. An investor should ask what cash flows, ownership rights, and valuation assumptions support a purchase, rather than using a busy market as proof of quality.",
       "case": "gme",
@@ -857,10 +773,6 @@ const CONTENT_EN = {
       "chapter": 22,
       "title": "Read through financial packaging",
       "desc": "New certificates do not automatically create new value.",
-      "pages": [
-        582,
-        584
-      ],
       "context": "Chapter XXII describes a consolidation of stove companies and the promotion of the resulting shares. The narrative discusses exchange ratios, financing, and the danger of expecting favourable market conditions to continue. Presentation and distribution are part of the story, alongside the underlying businesses.",
       "analysis": "A split changes units, not the investor’s proportional claim by itself. A merger can change economics, but that depends on price paid, costs, debt, and the actual combined business. Evaluate the substance of a transaction rather than the apparent cheapness of a smaller per-share price.",
       "case": "ltcm",
@@ -896,10 +808,6 @@ const CONTENT_EN = {
       "chapter": 23,
       "title": "Protection is more than a price forecast",
       "desc": "Governance and market integrity belong in the investment process.",
-      "pages": [
-        612,
-        614
-      ],
       "context": "Chapter XXIII recognises both unavoidable errors and practices the narrator regards as indefensible. Livingston notes improvements in exchange rules while arguing that abuses remain. The chapter broadens the reader’s attention from personal forecasting ability to the institutions surrounding investors.",
       "analysis": "Regulation cannot eliminate losses, but disclosure, custody, market-access controls, and enforcement affect the risks investors face. Distinguish ordinary investment uncertainty from misrepresentation or broken controls. A credible regulator is not a guarantee of a particular investment’s return.",
       "case": "knight",
@@ -935,10 +843,6 @@ const CONTENT_EN = {
       "chapter": 24,
       "title": "Look beyond today’s earnings",
       "desc": "An investment argument needs a future and an incentive check.",
-      "pages": [
-        638,
-        640
-      ],
       "context": "Chapter XXIV questions advice built only on present conditions and examines conflicts when brokers seek commissions while insiders want to sell. Livingston argues that prices anticipate future business conditions. His references to a particular forecasting horizon should not be treated as a universal market law.",
       "analysis": "A low multiple of current earnings can be misleading if those earnings are temporarily high or about to fall. Examine a range of future outcomes and the source of the recommendation. The book contributes questions about incentives and expectations; it does not supply a complete modern framework for diversified long-term investing.",
       "case": "buffett",
