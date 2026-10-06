@@ -1,87 +1,111 @@
-const lessons = [
-  { title: 'Observe before you act', category: 'Practice', summary: 'Learn to separate what the market is doing from what you hope it will do.', body: 'Livingston’s early work at a quotation board teaches him to pay close attention to price changes. Keeping a record gives him something more useful than a vivid memory: a way to compare his expectations with what actually happened.', takeaway: 'Observation is a practice, not a prediction engine. A pattern can suggest a question without guaranteeing an answer. Record the evidence for a decision, including the evidence that might contradict it.', reflection: 'What would you write down before a decision so that you could evaluate it honestly afterward?' },
-  { title: 'The discipline of waiting', category: 'Psychology', summary: 'Activity can feel like progress. Sometimes the harder decision is to wait.', body: 'The book repeatedly distinguishes reading a broad market movement from chasing every fluctuation. Livingston learns that frequent action can interrupt a sound idea just as easily as it can express one.', takeaway: 'Patience needs a reason and a limit. Waiting for a well-defined opportunity differs from refusing to reassess a losing idea. Decide what you are waiting for and what would change your mind.', reflection: 'Are you responding to new information, or to discomfort with doing nothing?' },
-  { title: 'Respect the downside', category: 'Practice', summary: 'A strong opinion is no substitute for a clear boundary on risk.', body: 'Livingston’s reversals show how fragile a fortune can be when confidence outruns restraint. The narrative offers repeated examples of judgment being compromised by the wish to recover a loss or defend a previous decision.', takeaway: 'An entry decision and a risk decision belong together. Define the conditions that would invalidate your reasoning before the emotional pressure of a loss arrives. No historical lesson removes the possibility of losing money.', reflection: 'What evidence would tell you that your original reasoning no longer holds?' },
-  { title: 'Think for yourself', category: 'Psychology', summary: 'Borrowed conviction becomes expensive when you cannot explain the reasoning.', body: 'Other people’s confidence repeatedly pulls Livingston away from his own observations. Persuasive tips and apparently expert opinions can be especially tempting when they support an outcome he already wants.', takeaway: 'Treat an opinion as a claim to investigate. Ask what evidence supports it, what incentives shape it, and whether you would reach the same conclusion without knowing who said it.', reflection: 'Which part of your current view can you support independently?' },
-  { title: 'Learn the market you’re in', category: 'Practice', summary: 'A method that works in one setting may fail when the rules change.', body: 'The transition from bucket shops to exchange trading exposes a gap in Livingston’s early methods. A displayed quotation is not the same thing as an executable trade, especially when time, order size, and market movement intervene.', takeaway: 'Results depend on the conditions in which a method operates. Consider execution, liquidity, costs, and changing market structure before assuming that earlier success will transfer to a new setting.', reflection: 'What assumption about your environment would be most costly if it stopped being true?' },
-  { title: 'Study your own mistakes', category: 'Psychology', summary: 'The most useful lesson is often hiding in a decision you would rather forget.', body: 'The narrative is not a straight ascent from novice to master. Livingston makes money, loses it, and returns to the same human weaknesses. Experience gives him material to learn from, but it does not automatically prevent repetition.', takeaway: 'Review the quality of a decision separately from its outcome. A lucky result can conceal a weak process, while a careful decision can still end badly. Look for a specific adjustment you can make next time.', reflection: 'Was your last good outcome the result of a repeatable process, or a fortunate exception?' }
-];
-const storage = {
-  read(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } },
-  write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } }
-};
-const storedRead = storage.read('operators-library-read', []);
-const explored = new Set(Array.isArray(storedRead) ? storedRead.filter(i => Number.isInteger(i) && i >= 0 && i < lessons.length) : []);
-let filter = 'All';
-let currentLesson = 0;
-const grid = document.querySelector('#lesson-grid');
-const dialog = document.querySelector('#lesson-dialog');
-function render() {
-  const query = document.querySelector('#search').value.trim().toLowerCase();
-  grid.replaceChildren();
-  lessons.forEach((lesson, index) => {
-    if ((filter !== 'All' && lesson.category !== filter) || !`${lesson.title} ${lesson.summary} ${lesson.category}`.toLowerCase().includes(query)) return;
-    const card = document.createElement('button');
-    card.className = 'lesson-card';
-    card.innerHTML = `<span class="card-top"><span class="card-number">0${index + 1}</span><span class="card-category">${lesson.category}</span></span><h3>${lesson.title}</h3><p>${lesson.summary}</p><span class="card-bottom"><span>${explored.has(index) ? 'Explored ✓ · Revisit lesson' : 'Read the lesson'}</span><span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></span>`;
-    card.addEventListener('click', () => openLesson(index));
-    grid.append(card);
-  });
-  document.querySelector('#empty').hidden = grid.children.length !== 0;
-  document.querySelector('#progress-text').textContent = `${explored.size} of 6 explored`;
-  document.querySelector('#progress').value = explored.size;
+const main = document.querySelector('#main');
+const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icon = '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>';
+let storageOK = true;
+function read(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { storageOK = false; return fallback; } }
+function write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { storageOK = false; return false; } }
+const initial = read('operator-study-v2', {});
+const validIDs = new Set(CONTENT.lessons.map(l => l.id));
+const validArray = value => Array.isArray(value) ? [...new Set(value.filter(id => validIDs.has(id)))] : [];
+const state = {done:validArray(initial?.done), saved:validArray(initial?.saved), last:validIDs.has(initial?.last) ? initial.last : null};
+let moduleFilter = 'all', statusFilter = 'all', search = '';
+function persist() { write('operator-study-v2', state); }
+function notice() { return storageOK ? '' : '<p class="storage-alert" role="status">Browser storage is unavailable. Progress lasts for this session; export your notes to keep them.</p>'; }
+function progress() { return `<div class="progress-track" role="progressbar" aria-label="Reading progress" aria-valuenow="${state.done.length}" aria-valuemin="0" aria-valuemax="24"><span style="width:${state.done.length / 24 * 100}%"></span></div>`; }
+function art(id, cls = '') { return `<figure class="case-art ${cls}"><img src="assets/art/${esc(id)}.webp" alt="Conceptual illustration accompanying the ${esc(CONTENT.cases.find(c => c.id === id).title)} case" loading="lazy"><figcaption>AI-generated conceptual illustration · not a historical photograph</figcaption></figure>`; }
+function item(l) { return `<li><a href="#lesson/${l.id}" ${location.hash === '#lesson/' + l.id ? 'aria-current="page"' : ''}><span class="lesson-num">${l.id}</span><span class="title">${esc(l.title)}</span><span class="lesson-status ${state.done.includes(l.id) ? 'done' : ''}">${state.done.includes(l.id) ? '✓ Read' : 'Read'}</span></a></li>`; }
+function home() {
+ const resume = CONTENT.lessons.find(l => l.id === state.last) || CONTENT.lessons[0];
+ main.innerHTML = `${notice()}<section class="hero"><div><p class="eyebrow">REMINISCENCES OF A STOCK OPERATOR</p><h1>Read the market.<br>Understand yourself.</h1><p>Explore Edwin Lefèvre’s classic through the decisions of Larry Livingston: what the book teaches, where its ideas need scrutiny, and what real markets can add.</p><div class="hero-meta"><span><strong>6</strong> learning modules</span><span><strong>24</strong> chapter lessons</span><span><strong>7</strong> real-world cases</span></div><div class="actions"><a class="btn gold" href="#lesson/${resume.id}">${state.last ? 'Continue reading' : 'Start reading'}</a><a class="btn outline" href="#library">Explore the book</a></div></div><div class="hero-art"><div class="art-orbit"></div><div class="art-orbit orbit-two"></div><div class="art-book"><span>EDWIN LEFÈVRE</span><strong>Reminiscences<br>of a<br>Stock Operator</strong><div class="book-rule"></div><small>THE INVESTMENT STUDY LIBRARY</small><svg viewBox="0 0 220 90" aria-hidden="true"><path d="M0 78H220M0 48H220M0 18H220" stroke="currentColor" opacity=".2"/><path d="M0 75 20 66 35 72 55 40 70 53 90 30 110 42 130 20 155 34 175 10 195 24 220 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></div><div class="art-note">Observe. Question. Reflect.<span>A CLASSIC, REVISITED</span></div></div></section><div class="progress-panel"><div><strong>Your reading progress · ${state.done.length} / 24</strong><p>Saved in this browser. Every lesson is open from the start.</p>${progress()}</div><a class="btn light" href="#lesson/${resume.id}">Resume lesson</a></div><section class="featured-case"><div class="feature-intro"><p class="eyebrow">BEYOND THE BOOK</p><h2>Old questions.<br>Real-world consequences.</h2><p>Explore seven documented events and comparisons. Later cases are learning additions, not events described in the 1923 book.</p><a class="text-link" href="#cases">Browse every case ${icon}</a></div><div class="feature-story">${art('ltcm','feature-image')}<span class="eyebrow">SEPTEMBER 1998</span><h3>LTCM: being right is not enough</h3><p>A strong view needs enough capital and liquidity to survive the path to its conclusion.</p><a class="text-link" href="#lesson/3-1">Explore the lesson ${icon}</a></div></section><div class="section-heading"><div><p class="eyebrow">THE STUDY PATH</p><h2>24 chapters. 24 lessons.</h2><p>Book context, analysis, a real case, an exercise, and a self-check.</p></div><label class="search course-search"><input type="search" id="lesson-search" aria-label="Search lessons" placeholder="Search ideas, chapters, or real cases…" value="${esc(search)}"></label></div><div class="course-controls"><div class="module-filters" role="group" aria-label="Filter modules"><button data-module="all">All modules</button>${CONTENT.modules.map(m => `<button data-module="${m.id}">${String(m.id).padStart(2,'0')} ${esc(m.title)}</button>`).join('')}</div><div class="reading-filters" role="group" aria-label="Reading status">${[['all','All lessons'],['unread','To read'],['done','Completed']].map(([id,label]) => `<button data-status="${id}">${label}</button>`).join('')}<span id="lesson-count" role="status"></span></div></div><div id="course-grid" class="course-grid"></div>`;
+ document.querySelector('#lesson-search').oninput = e => { search = e.target.value; cards(); };
+ document.querySelectorAll('[data-module]').forEach(b => b.onclick = () => { moduleFilter = b.dataset.module; cards(); });
+ document.querySelectorAll('[data-status]').forEach(b => b.onclick = () => { statusFilter = b.dataset.status; cards(); });
+ cards();
 }
-function openLesson(index) {
-  currentLesson = index;
-  const lesson = lessons[index];
-  document.querySelector('#dialog-category').textContent = `LESSON 0${index + 1} / ${lesson.category.toUpperCase()}`;
-  document.querySelector('#dialog-title').textContent = lesson.title;
-  document.querySelector('#dialog-body').innerHTML = `<p>${lesson.body}</p><h3>THE TAKEAWAY</h3><p>${lesson.takeaway}</p><h3>A QUESTION TO TAKE WITH YOU</h3><p class="reflection">${lesson.reflection}</p>`;
-  document.querySelector('#mark-read').innerHTML = explored.has(index) ? 'Explored — return to lessons <span>✓</span>' : 'Mark as explored <span>✓</span>';
-  dialog.showModal();
+function matches(l) {
+ const c = CONTENT.cases.find(c => c.id === l.case);
+ return (moduleFilter === 'all' || String(l.module) === moduleFilter) && (statusFilter === 'all' || (statusFilter === 'done' ? state.done.includes(l.id) : !state.done.includes(l.id))) && `${l.chapter} ${l.title} ${l.desc} ${l.context} ${c.title}`.toLowerCase().includes(search.toLowerCase().trim());
 }
-document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
-  filter = button.dataset.filter;
-  document.querySelectorAll('.filter').forEach(item => {
-    const active = item === button;
-    item.classList.toggle('active', active);
-    item.setAttribute('aria-pressed', String(active));
-  });
-  render();
-}));
-document.querySelector('#search').addEventListener('input', render);
-document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
-document.querySelector('#mark-read').addEventListener('click', () => {
-  explored.add(currentLesson);
-  const saved = storage.write('operators-library-read', [...explored]);
-  dialog.close();
-  render();
-  if (!saved) document.querySelector('#progress-text').textContent += ' (this session only)';
-  const cards = [...grid.querySelectorAll('button')];
-  const previous = cards.find(card => card.querySelector('h3').textContent === lessons[currentLesson].title);
-  previous?.focus();
-});
-document.querySelectorAll('#quiz-options button').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('#quiz-options button').forEach(item => { item.classList.remove('correct', 'incorrect'); item.setAttribute('aria-pressed', 'false'); });
-  const correct = button.dataset.correct === 'true';
-  button.classList.add(correct ? 'correct' : 'incorrect');
-  button.setAttribute('aria-pressed', 'true');
-  document.querySelector('#quiz-result').textContent = correct ? 'Exactly. Reassess the evidence and your planned risk limit. The desire to break even is not, by itself, a reason to add exposure.' : 'Consider the motive. Recovering a loss or seeking reassurance does not establish that the original idea is sound. Try again.';
-}));
-const notes = document.querySelector('#notes');
-const savedNotes = storage.read('operators-library-notes', '');
-notes.value = typeof savedNotes === 'string' ? savedNotes : '';
-notes.addEventListener('input', () => {
-  document.querySelector('#note-status').textContent = storage.write('operators-library-notes', notes.value) ? 'Saved in this browser ✓' : 'Browser storage unavailable — export to keep your notes';
-});
-document.querySelector('#download-notes').addEventListener('click', () => {
-  const blob = new Blob([`THE OPERATOR’S LIBRARY\nReading notes\n\n${notes.value}\n`], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'operators-library-notes.txt';
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-});
-render();
+function cards() {
+ const visible = CONTENT.lessons.filter(matches);
+ document.querySelector('#course-grid').innerHTML = CONTENT.modules.map(m => {
+  const lessons = visible.filter(l => l.module === m.id);
+  return lessons.length ? `<section class="chapter-card"><div class="chapter-top"><span class="chapter-icon">${String(m.id).padStart(2,'0')}</span><div><span class="chapter-number">MODULE ${m.id} · CHAPTERS ${(m.id-1)*4+1}–${m.id*4}</span><h3>${esc(m.title)}</h3><p>${esc(m.desc)}</p></div></div><ul class="lesson-list">${lessons.map(item).join('')}</ul></section>` : '';
+ }).join('') || '<p class="empty">No lessons match. Try another search or filter.</p>';
+ document.querySelector('#lesson-count').textContent = `${visible.length} lessons`;
+ document.querySelectorAll('[data-module]').forEach(b => { const active = b.dataset.module === moduleFilter; b.classList.toggle('active',active); b.setAttribute('aria-pressed',active); });
+ document.querySelectorAll('[data-status]').forEach(b => { const active = b.dataset.status === statusFilter; b.classList.toggle('active',active); b.setAttribute('aria-pressed',active); });
+}
+function lesson(id) {
+ const l = CONTENT.lessons.find(l => l.id === id);
+ if (!l) { main.innerHTML = '<section class="about"><h1>Lesson not found</h1><p>Choose one of the 24 chapters in the library.</p><a class="btn" href="#courses">Return to lessons</a></section>'; return; }
+ state.last = id; persist();
+ const m = CONTENT.modules.find(m => m.id === l.module), c = CONTENT.cases.find(c => c.id === l.case);
+ const index = CONTENT.lessons.indexOf(l), previous = CONTENT.lessons[index-1], next = CONTENT.lessons[index+1];
+ const reflection = read('operator-note-'+id,'');
+ main.innerHTML = `${notice()}<div class="breadcrumb"><a href="#courses">Lessons</a> / ${esc(m.title)}</div><div class="lesson-layout"><article class="lesson-body"><header class="lesson-header"><p class="eyebrow">LESSON ${l.id} · CHAPTER ${l.chapter} · ABOUT 6 MINUTES</p><h1>${esc(l.title)}</h1><p class="lesson-desc">${esc(l.desc)}</p><p class="footnote">Book reference: Chapter ${l.chapter} opening · PDF pages ${l.pages[0]}–${l.pages[1]}</p></header><nav class="lesson-shortcuts" aria-label="On this page"><button data-jump="book-context">The book</button><button data-jump="case-title">Real case</button><button data-jump="self-check">Check yourself</button><button data-jump="field-notes">Reflect</button></nav>${art(l.case,'lesson-illustration')}<section class="decision-box"><span class="label">BEFORE YOU READ · A DECISION TO EXAMINE</span><h2>What would you check?</h2><p>${esc(l.task)}</p><details><summary>Reveal a starting point</summary><p>${esc(l.ideas[0])} ${esc(l.ideas[1])}</p></details></section><section class="recall-section"><span class="label">PAUSE & RECALL</span><h2>Three ideas to keep</h2><p>Try to name an idea, then turn a card to check it.</p><div class="recall-grid">${l.ideas.map((idea,i) => `<button class="recall-card" data-recall="${i}" aria-expanded="false"><span>${String(i+1).padStart(2,'0')}</span><span class="recall-text">Reveal an idea ${icon}</span></button>`).join('')}</div></section><section id="book-context" class="book-context"><span class="label">BOOK CONTEXT · ORIGINAL PARAPHRASE</span><p>${esc(l.context)}</p></section><section class="analysis"><span class="label">OUR ANALYSIS · APPLYING AND QUESTIONING THE IDEA</span><h2>The lesson to carry forward</h2><p>${esc(l.analysis)}</p></section><aside class="worked-example"><h3>Worked example · hypothetical</h3><p>${esc(l.example)}</p></aside><section class="case-study"><span class="label">REAL-WORLD CASE · EXTENDED READING</span><p class="case-date">${esc(c.date)}</p><h2 id="case-title">${esc(c.title)}</h2><p class="case-summary">${esc(c.facts)}</p><h3>The background</h3><p>${esc(c.background)}</p><h3>How it unfolded</h3><ol class="case-sequence">${c.sequence.map(s => `<li>${esc(s)}</li>`).join('')}</ol><h3>Outcome and aftermath</h3><p>${esc(c.outcome)}</p><a class="source-link" href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">Read the source · ${esc(c.source)} ${icon}</a>${(c.extraSources||[]).map(s => `<p><a class="source-link" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ${icon}</a></p>`).join('')}<div class="case-reflection"><h3>Why this matters for this chapter · our interpretation</h3><p>${esc(l.connection)}</p><p class="footnote">This later case is a comparison added by this library. It is not an event from the original book, and the analogy has limits.</p></div></section><section class="experiment-callout"><div><span class="label">PUT THE IDEA TO WORK</span><h2>Try a small experiment</h2><p>Explore loss recovery, exposure, and the effect of costs.</p></div><a class="btn light" href="#lab">Open learning lab ${icon}</a></section><section class="quiz" id="self-check"><span class="label">QUICK SELF-CHECK</span><h2>${esc(l.question)}</h2>${l.options.map((option,i) => `<button class="quiz-option" data-answer="${i}">${'ABC'[i]}. ${esc(option)}</button>`).join('')}<p id="feedback" class="quiz-feedback" role="status" hidden></p></section><section id="field-notes" class="field-notes"><span class="label">YOUR FIELD NOTES</span><h2>What changed your mind?</h2><p>${esc(l.task)}</p><label for="lesson-note">Your reflection · stored only in this browser</label><textarea id="lesson-note" maxlength="4000" rows="5" placeholder="One observation, one assumption, one open question…">${esc(typeof reflection === 'string' ? reflection : '')}</textarea><div class="note-actions"><span id="note-status" role="status"></span><button class="text-link" id="export-notes">Export all notes ↓</button></div></section><section class="sources"><h2>Read the book passage</h2><p><strong>Chapter ${l.chapter} · ${esc(l.title)}</strong><br>Start with PDF pages ${l.pages[0]}–${l.pages[1]} in your supplied 2010 Wiley edition.</p><p class="footnote">These are file-page numbers for the chapter opening, not printed pagination or an exhaustive citation for every theme. The original chapters use Roman numerals; titles here are our study labels. Annotation text and the full PDF are not reproduced.</p></section><div class="lesson-bottom"><div class="lesson-actions"><button class="btn" id="mark-done">${state.done.includes(id) ? '✓ Read — undo' : 'Mark as read'}</button><button class="btn light" id="bookmark" aria-pressed="${state.saved.includes(id)}">${state.saved.includes(id) ? '★ Bookmarked' : '☆ Bookmark lesson'}</button></div><div class="lesson-pagination">${previous ? `<a href="#lesson/${previous.id}"><small>Previous lesson</small>${esc(previous.title)}</a>` : '<a href="#courses">All lessons</a>'}${next ? `<a href="#lesson/${next.id}"><small>Next lesson</small>${esc(next.title)}</a>` : '<a href="#courses">Return to the library</a>'}</div></div></article><aside class="lesson-sidebar"><span class="chapter-number">MODULE ${m.id}</span><h2>${esc(m.title)}</h2><ul class="lesson-list">${CONTENT.lessons.filter(x => x.module === m.id).map(item).join('')}</ul>${progress()}<a class="sidebar-link" href="#courses">All six modules ${icon}</a></aside></div>`;
+ document.querySelectorAll('[data-jump]').forEach(b => b.onclick = () => document.getElementById(b.dataset.jump).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'}));
+ document.querySelectorAll('[data-recall]').forEach(b => b.onclick = () => { const expanded = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded',expanded); b.querySelector('.recall-text').textContent = expanded ? l.ideas[Number(b.dataset.recall)] : 'Reveal an idea ↗'; });
+ document.querySelectorAll('[data-answer]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-answer]').forEach(x => {x.classList.remove('correct','wrong');x.setAttribute('aria-pressed','false');});
+  const correct = Number(b.dataset.answer) === l.answer; b.classList.add(correct ? 'correct' : 'wrong'); b.setAttribute('aria-pressed','true');
+  const feedback = document.querySelector('#feedback'); feedback.hidden = false; feedback.textContent = (correct ? 'Correct. ' : 'Not quite. ') + l.options[l.answer] + '. ' + l.ideas[0];
+ });
+ const note = document.querySelector('#lesson-note'), status = document.querySelector('#note-status');
+ status.textContent = `${note.value.length} / 4000`;
+ note.oninput = () => { const saved = write('operator-note-'+id,note.value); status.textContent = saved ? `Saved · ${note.value.length} / 4000` : 'Storage unavailable — export to keep your notes'; };
+ document.querySelector('#export-notes').onclick = exportNotes;
+ document.querySelector('#mark-done').onclick = () => { state.done = state.done.includes(id) ? state.done.filter(x => x !== id) : [...state.done,id]; persist(); lesson(id); header(); document.querySelector('#mark-done').focus(); };
+ document.querySelector('#bookmark').onclick = e => { toggleSaved(id); e.currentTarget.textContent = state.saved.includes(id) ? '★ Bookmarked' : '☆ Bookmark lesson'; e.currentTarget.setAttribute('aria-pressed',state.saved.includes(id)); };
+}
+function toggleSaved(id) { state.saved = state.saved.includes(id) ? state.saved.filter(x => x !== id) : [...state.saved,id]; persist(); }
+function library(saved = false) {
+ main.innerHTML = `${notice()}<div class="page-heading"><p class="eyebrow">${saved ? 'YOUR READING SHELF' : 'A MAP OF THE BOOK'}</p><h1>${saved ? 'Bookmarked lessons' : 'The 24-chapter guide'}</h1><p>Original chapter study labels, key ideas, and references to your supplied edition.</p></div><div class="library-controls"><label class="search"><input type="search" id="chapter-search" placeholder="Search chapters and ideas…" aria-label="Search chapters"></label><select id="chapter-module" aria-label="Module"><option value="all">All modules</option>${CONTENT.modules.map(m => `<option value="${m.id}">${esc(m.title)}</option>`).join('')}</select><a class="btn light" href="study-notes.txt" download>Download study notes ↓</a></div><p id="result-count" role="status"></p><div class="article-grid" id="chapter-results"></div>`;
+ const render = () => {
+  const q = document.querySelector('#chapter-search').value.toLowerCase().trim(), mod = document.querySelector('#chapter-module').value;
+  const chapters = CONTENT.lessons.filter(l => (!saved || state.saved.includes(l.id)) && (mod === 'all' || String(l.module) === mod) && `${l.chapter} ${l.title} ${l.context}`.toLowerCase().includes(q));
+  document.querySelector('#result-count').textContent = `${chapters.length} chapters`;
+  document.querySelector('#chapter-results').innerHTML = chapters.map(l => `<article class="article-card"><span class="article-date">CHAPTER ${l.chapter} · PDF OPENING ${l.pages[0]}–${l.pages[1]}</span><h3>${esc(l.title)}</h3><p class="article-summary">${esc(l.context)}</p><div class="tags"><span class="tag">${esc(CONTENT.modules[l.module-1].title)}</span></div><div class="article-bottom"><a class="source-link" href="#lesson/${l.id}">Read the lesson ${icon}</a><button class="save-btn" data-save="${l.id}" aria-pressed="${state.saved.includes(l.id)}" aria-label="${state.saved.includes(l.id) ? 'Unbookmark' : 'Bookmark'} chapter ${l.chapter}">${state.saved.includes(l.id) ? '★ Saved' : '☆ Save'}</button></div></article>`).join('') || `<p class="empty">${saved ? 'No matching bookmarks. Save a lesson or chapter to find it here.' : 'No chapters match. Try another word or module.'}</p>`;
+  document.querySelectorAll('[data-save]').forEach(b => b.onclick = () => { toggleSaved(b.dataset.save); render(); });
+ };
+ document.querySelector('#chapter-search').oninput = render; document.querySelector('#chapter-module').onchange = render; render();
+}
+function caseLibrary() {
+ main.innerHTML = `<div class="page-heading"><p class="eyebrow">BEYOND THE BOOK</p><h1>Seven cases. Different questions.</h1><p>Documented events and comparisons, connected to the book through original analysis.</p></div><div class="article-grid">${CONTENT.cases.map(c => `<article class="article-card">${art(c.id)}<span class="eyebrow">${esc(c.date)}</span><h2>${esc(c.title)}</h2><p>${esc(c.facts)}</p><a class="source-link" href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.source)} ${icon}</a><h3>Explore through these lessons</h3><ul class="case-lesson-links">${CONTENT.lessons.filter(l => l.case === c.id).map(l => `<li><a href="#lesson/${l.id}">${l.id} · ${esc(l.title)}</a></li>`).join('')}</ul></article>`).join('')}</div>`;
+}
+function exportNotes() {
+ const notes = CONTENT.lessons.map(l => { const n = read('operator-note-'+l.id,''); return typeof n === 'string' && n.trim() ? `CHAPTER ${l.chapter} · ${l.title}\n${n}` : ''; }).filter(Boolean);
+ const legacy = read('operators-library-notes','');
+ if (typeof legacy === 'string' && legacy.trim()) notes.push('NOTES FROM THE ORIGINAL SITE\n'+legacy);
+ const text = 'OPERATOR’S LIBRARY — PERSONAL READING NOTES\n\n'+(notes.join('\n\n') || 'No notes saved yet.');
+ const url = URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})), a = document.createElement('a');a.href=url;a.download='operator-reading-notes.txt';a.click();setTimeout(() => URL.revokeObjectURL(url),1000);
+}
+function lab() {
+ main.innerHTML = `<div class="page-heading"><p class="eyebrow">THE LEARNING LAB</p><h1>Make the arithmetic visible.</h1><p>Three simplified experiments. These are illustrations, not forecasts or recommended portfolio settings.</p></div><div class="lab-grid"><section class="lab-panel"><span class="label">01 / LOSS & RECOVERY</span><h2>The return journey is steeper</h2><p>A percentage loss and the gain needed to recover use different starting amounts.</p><label for="loss">Loss <output id="loss-label"></output></label><input id="loss" type="range" min="0" max="90" value="40" step="1"><div class="lab-value" id="recovery"></div><p id="recovery-detail"></p><div class="capital-bars"><div><span>Starting capital</span><div class="bar"><span style="width:100%"></span></div></div><div><span>After loss</span><div class="bar"><span id="remaining-bar"></span></div></div></div><p class="footnote">Required gain = loss ÷ (1 − loss). No withdrawals, fees, or taxes. This is arithmetic, not an expected return.</p><a class="text-link" href="#lesson/4-1">Related lesson: protect your judgment ${icon}</a></section><section class="lab-panel"><span class="label">02 / EXPOSURE & EQUITY</span><h2>Small moves, larger consequences</h2><p>Compare gross exposure with a hypothetical $10,000 of equity.</p><label for="leverage">Exposure multiple <output id="leverage-label"></output></label><input id="leverage" type="range" min="1" max="10" value="3" step="1"><label for="move">Adverse price move <output id="move-label"></output></label><input id="move" type="range" min="0" max="20" value="5" step="1"><div class="lab-value" id="equity-loss"></div><p id="equity-detail"></p><p class="footnote">Linear exposure model: equity loss = exposure × adverse move. Ignores interest, maintenance margin, liquidations, gaps, and derivative nonlinearity. Loss can exceed initial equity.</p><a class="text-link" href="#lesson/3-1">Related lesson: liquidity and survival ${icon}</a></section><section class="lab-panel"><span class="label">03 / THE COST OF COMPOUNDING</span><h2>What does the investor keep?</h2><p>Compare a hypothetical $10,000 investment over 20 years at a constant 6% gross annual return.</p><label for="fee">Annual fee deduction <output id="fee-label"></output></label><input id="fee" type="range" min="0" max="3" value="1" step="0.1"><div class="lab-value" id="fee-cost"></div><p id="fee-detail"></p><p class="footnote">Simplified model subtracts the fee in percentage points from the annual return. Actual fees, changing returns, taxes, and inflation may differ. It is not a projection of any fund.</p><a class="text-link" href="#lesson/3-4">Related lesson: expertise and costs ${icon}</a></section></div><section class="field-notes"><h2>Keep your observations</h2><p>Open a lesson to record reflections, or export notes from every chapter in one file.</p><button class="btn" id="export-notes">Export all personal notes ↓</button></section>`;
+ const money = n => n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+ const update = () => {
+  const loss = +document.querySelector('#loss').value / 100, lev = +document.querySelector('#leverage').value, move = +document.querySelector('#move').value / 100, fee = +document.querySelector('#fee').value;
+  document.querySelector('#loss-label').textContent = `${Math.round(loss*100)}%`; document.querySelector('#recovery').textContent = `${(loss/(1-loss)*100).toFixed(1)}% gain to recover`;
+  document.querySelector('#recovery-detail').textContent = `${money(10000)} becomes ${money(10000*(1-loss))}. A gain of ${money(10000*loss)} is needed to get back.`;document.querySelector('#remaining-bar').style.width=(1-loss)*100+'%';
+  document.querySelector('#leverage-label').textContent=lev+'×';document.querySelector('#move-label').textContent=Math.round(move*100)+'%';
+  document.querySelector('#equity-loss').textContent=(lev*move*100).toFixed(0)+'% equity loss';document.querySelector('#equity-detail').textContent=`${money(10000*lev)} exposure loses ${money(10000*lev*move)}, leaving ${money(10000*(1-lev*move))} equity in this simplified model.`;
+  const gross=10000*1.06**20, net=10000*(1.06-fee/100)**20;
+  document.querySelector('#fee-label').textContent=fee.toFixed(1)+'%';document.querySelector('#fee-cost').textContent=money(gross-net)+' difference';document.querySelector('#fee-detail').textContent=`Without the deduction: ${money(gross)}. With it: ${money(net)}. Both assume a smooth, constant return.`;
+ };
+ document.querySelectorAll('input[type=range]').forEach(input => input.oninput=update);document.querySelector('#export-notes').onclick=exportNotes;update();
+}
+function about() {
+ main.innerHTML = `<article class="about"><p class="eyebrow">SOURCES & METHOD</p><h1>A companion for thoughtful investing.</h1><p>This library connects all 24 chapters of Edwin Lefèvre’s <i>Reminiscences of a Stock Operator</i> with original analysis, worked examples, and later real-world cases.</p><h2>The book and its narrator</h2><p>First published in 1923, the book is a fictionalised account narrated by Larry Livingston, a character inspired by Jesse Livermore. The supplied 2010 Wiley edition contains commentary by Jon D. Markman. A narrator’s explanation of success is not an independently validated strategy, and pseudonymous book episodes are not presented here as independently verified corporate histories.</p><h2>How to use the references</h2><p>Each lesson identifies the first three PDF file pages of its chapter in the supplied edition. Chapter I begins on PDF page 22; Chapter XXIV begins on PDF page 638. File pages are not printed page numbers. Chapter opening passages and selected surrounding material informed the notes; these are thematic guides, not exhaustive annotations. Study titles are ours—the original chapters are numbered in Roman numerals.</p><h2>Four kinds of content</h2><ul><li><strong>Book context:</strong> original paraphrases of the narrative.</li><li><strong>Our analysis:</strong> interpretation, limitations, and applications to investment decisions.</li><li><strong>Real-world cases:</strong> seven later events or comparisons, with links to documentary sources. A case may appear in several lessons, with a different connection each time.</li><li><strong>Worked examples and experiments:</strong> explicitly hypothetical calculations, not backtests, recommendations, or promised returns.</li></ul><h2>Investment learning, not a trading system</h2><p>Speculation in an early twentieth-century narrative differs from a diversified modern financial plan. Risk capacity, diversification, time horizon, costs, taxes, and personal circumstances matter. This site does not recommend securities, provide personalised financial advice, or establish that any technique is profitable.</p><h2>Independent status and attribution</h2><p>This is not an official publication and is not affiliated with the author’s estate, Wiley, or the organisations discussed. The full PDF and annotation text are not distributed. The interface and case illustrations are adapted from your Education of a Speculator study library. Illustrations are AI-generated concepts, not historical photographs. Linked material remains subject to its own terms.</p><h2>Your notes and privacy</h2><p>Progress, bookmarks, and personal notes remain in this browser’s localStorage. They are not sent to us or synced between devices. Anyone using your browser profile may be able to read them; clearing site data removes them. Export notes to keep a copy. Notes from the original six-lesson website are preserved and included in the export. This site has no accounts, analytics, advertising, or third-party font requests.</p><p>GitHub Pages hosts the site and may log visitor IP addresses for security. External source links open other websites with their own privacy practices. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer">GitHub Pages information</a>.</p><h2>Real-case source library</h2><p>These links identify the documentary basis for the case summaries. They are not live data feeds; the library does not claim to capture later developments or every perspective on an event.</p><ul class="case-source-list">${CONTENT.cases.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.title)} ${icon}</a><small>${esc(c.source)} · ${esc(c.date)}</small></li>`).join('')}</ul><a class="btn" href="#courses">Explore the lessons</a></article>`;
+}
+function header() {
+ document.querySelector('#header-progress').textContent=`${state.done.length} / 24 read`;
+ const hash=location.hash || '#courses';
+ document.querySelectorAll('.top-nav a').forEach(a => { const active=a.hash===hash || (a.hash==='#courses' && hash.startsWith('#lesson/'));a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current'); });
+}
+function route() {
+ const h=location.hash.slice(1)||'courses';
+ if(h==='main'){ main.focus();return; }
+ if(h.startsWith('lesson/')) lesson(h.slice(7));else if(h==='library') library();else if(h==='saved') library(true);else if(h==='lab') lab();else if(h==='cases')caseLibrary();else if(h==='about')about();else home();
+ header();document.title=(main.querySelector('h1')?.textContent||'Study Library')+' | Reminiscences of a Stock Operator';window.scrollTo(0,0);main.focus({preventScroll:true});
+}
+window.addEventListener('hashchange',route);route();

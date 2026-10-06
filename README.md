@@ -1,37 +1,46 @@
-# The Operator’s Library
+# Reminiscences of a Stock Operator — Investment Study Library
 
-An independent, responsive reading companion to Edwin Lefèvre’s *Reminiscences of a Stock Operator*, inspired by the supplied 2010 Wiley annotated edition. The website contains original thematic summaries, not the uploaded PDF or a reproduction of Jon D. Markman’s annotations.
+An independent investment learning website based on Edwin Lefèvre’s book, using the supplied 2010 Wiley edition with commentary by Jon D. Markman. The design follows the owner's Education of a Speculator study library.
 
-## Run locally
+## Learning content
 
-No build step or package installation is required. With Python 3 installed:
+- 24 lessons, one for every numbered book chapter, grouped into six modules
+- Original book paraphrases, critical analysis, hypothetical worked examples, exercises, recall cards, and chapter-specific quizzes
+- Seven sourced later case studies: LTCM, the Swiss franc policy change, Knight Capital, Buffett's fund wager, the Flash Crash, GameStop, and SPIVA methodology
+- A searchable chapter guide, bookmarks, reading progress, private chapter notes, and note export
+- Three interactive models: loss recovery, exposure/equity, and compounding after fees
+
+The case studies are reused across chapters with distinct analytical connections. They are later learning additions, not events claimed to appear in the original book. Source links identify documentary sources; external source availability was not independently revalidated in this environment because its network proxy blocked those domains. The case summaries and conceptual illustrations were adapted from the owner's reference library.
+
+Chapter references identify the first three PDF file pages of each chapter in the uploaded edition, not printed pagination or exhaustive citations for every theme. Chapter I starts at file page 22 and Chapter XXIV at 638. The original chapters have Roman numeral headings; lesson titles are original study labels. The full PDF and annotation text are not published.
+
+## Local development
+
+No dependencies or build step are required:
 
 ```sh
 cd /workspace/reminiscencesofastockoperator
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-Open port 8000 in your local development environment. The entry point is `index.html`; styling and behavior live in `styles.css` and `app.js`.
+Open the served site. Direct lesson routes use hashes, for example `#lesson/1-1`; there are no server-side routing requirements.
 
-## Features
+- `content.js`: 24 lessons, six modules, and seven real cases
+- `app.js`: routes, interactions, browser storage, and calculations
+- `style.css`, `design.css`, `learning.css`: responsive styling
+- `assets/art/`: conceptual AI illustrations adapted from the reference library; `reference-prompts.json` preserves the original prompt provenance
+- `study-notes.txt`: downloadable original notes
 
-- Six original lessons with category filters and search
-- Keyboard-accessible lesson dialogs and browser-local reading progress
-- Interactive knowledge check with explanatory feedback
-- Browser-local notebook with plain-text export
-- Responsive layout and reduced-motion support
+Progress, bookmarks, and personal notes use browser localStorage. The new site uses `operator-study-v2` and `operator-note-*` keys to avoid collisions with the other GitHub Pages project. Original-site notes are retained under their old key and included in exports. The old six-theme progress remains untouched but is not mapped onto the new 24-chapter curriculum. No account, API key, external font, or analytics service is required.
 
-Reading progress and notes use localStorage and remain in the current browser. Clearing site data removes them; exported notes provide a portable copy. Google Fonts is an optional external request with system-font fallbacks. No backend, API keys, analytics, or paid services are required.
+## Deployment
 
-## Publish on GitHub Pages
+The GitHub Actions workflow deploys the public assets on a push to `main`. In **Settings → Pages**, select **GitHub Actions**. If Pages was enabled after a failed run, manually run the existing workflow again. Do not create a second deployment workflow.
 
-Push to `main`, then in GitHub **Settings → Pages → Build and deployment**, select **GitHub Actions**. The included workflow stages only the three public site files and deploys them. If the first run occurred before Pages was enabled, rerun it from the Actions tab.
+Expected deployed URL: https://nottsaifuture.github.io/reminiscencesofastockoperator/
 
-Expected URL once successfully deployed:
-`https://nottsaifuture.github.io/reminiscencesofastockoperator/`
+Publication success is separate from a successful Git push. Check the Actions run for deployment status.
 
-The repository upload and Pages deployment are separate operations. A successful push does not by itself confirm the site is live.
+## Validation
 
-## Content
-
-This is an independent educational and literary companion, not investment advice or an official publisher website. The original book was published in 1923 and follows Larry Livingston, a fictional character inspired by Jesse Livermore. The supplied edition adds commentary by Jon D. Markman. The PDF is not included in this repository.
+Browser validation covers all 24 lesson routes, quiz branches, recall cards, case imagery and connections, progress and bookmark persistence, note export, filters, all public routes at mobile/tablet widths, and the lab's formulas including zero-cost and negative-equity boundaries. The project does not backtest or validate an investment strategy.
