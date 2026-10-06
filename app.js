@@ -23,7 +23,7 @@ function render() {
     if ((filter !== 'All' && lesson.category !== filter) || !`${lesson.title} ${lesson.summary} ${lesson.category}`.toLowerCase().includes(query)) return;
     const card = document.createElement('button');
     card.className = 'lesson-card';
-    card.innerHTML = `<span class="card-top"><span class="card-number">0${index + 1}</span><span class="card-category">${lesson.category}</span></span><h3>${lesson.title}</h3><p>${lesson.summary}</p><span class="card-bottom"><span>${explored.has(index) ? 'Explored ✓ · Revisit lesson' : 'Read the lesson'}</span><span aria-hidden="true">↗</span></span>`;
+    card.innerHTML = `<span class="card-top"><span class="card-number">0${index + 1}</span><span class="card-category">${lesson.category}</span></span><h3>${lesson.title}</h3><p>${lesson.summary}</p><span class="card-bottom"><span>${explored.has(index) ? 'Explored ✓ · Revisit lesson' : 'Read the lesson'}</span><span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></span>`;
     card.addEventListener('click', () => openLesson(index));
     grid.append(card);
   });
