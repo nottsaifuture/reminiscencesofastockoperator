@@ -1,4 +1,4 @@
-const CONTENT = {
+const CONTENT_EN = {
   "modules": [
     {
       "id": 1,
@@ -59,7 +59,17 @@ const CONTENT = {
         "It records reasons and contrary evidence before the outcome.",
         "It guarantees that a pattern will repeat."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "You are examining a fund ranking using SPIVA’s lesson. Which population should you request?",
+        "options": [
+          "Only funds that still exist",
+          "The starting group, including closures and mergers",
+          "Only the ten best performers"
+        ],
+        "answer": 1,
+        "explanation": "Excluding disappeared funds can make the survivors look better than the original opportunity set."
+      }
     },
     {
       "id": "1-2",
@@ -88,7 +98,17 @@ const CONTENT = {
         "A profit after transaction costs.",
         "A price boundary if it executes, not execution itself."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "During a Flash Crash-style disruption, the screen shows a price. What else do you need?",
+        "options": [
+          "The quantity actually available at that price",
+          "Yesterday’s highest price",
+          "A prediction that the market will recover"
+        ],
+        "answer": 0,
+        "explanation": "Executable depth and order conditions determine what can fill. A later recovery does not guarantee today’s execution."
+      }
     },
     {
       "id": "1-3",
@@ -117,7 +137,17 @@ const CONTENT = {
         "That live execution will be identical.",
         "That real losses are impossible."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "You review a new order system after studying Knight Capital. What is the strongest next check?",
+        "options": [
+          "Trust the simulation because it made a profit",
+          "Increase order size to prove confidence",
+          "Test deployment controls, limits, and the stop procedure"
+        ],
+        "answer": 2,
+        "explanation": "Knight’s case shows why testing strategy logic alone is insufficient: production controls and the response to failures matter."
+      }
     },
     {
       "id": "1-4",
@@ -146,7 +176,17 @@ const CONTENT = {
         "Custody rights and the provider’s obligations.",
         "The number of promotional emails."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "A plan assumes an official exchange-rate floor will remain. What does the SNB case prompt you to do?",
+        "options": [
+          "List what fails if the policy changes",
+          "Treat the policy as a permanent guarantee",
+          "Ignore it because only brokers can change rules"
+        ],
+        "answer": 0,
+        "explanation": "The dependency is a policy commitment, not a contract guaranteeing every investor an exit price."
+      }
     },
     {
       "id": "2-1",
@@ -175,7 +215,17 @@ const CONTENT = {
         "Redrawing it after every failure.",
         "Testing a fixed rule on previously unseen observations."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "A GameStop chart is labelled “entirely a short squeeze.” What should you examine?",
+        "options": [
+          "Whether the chart looks dramatic",
+          "Transactions and the timing of covering versus other buying",
+          "How often the label is repeated"
+        ],
+        "answer": 1,
+        "explanation": "SEC staff distinguished intervals of short covering from the forces sustaining the longer rise."
+      }
     },
     {
       "id": "2-2",
@@ -204,7 +254,17 @@ const CONTENT = {
         "As proof of permanent forecasting skill.",
         "Only by the size of the winning trade."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "Someone says they foresaw the SNB policy change. What record would help assess that claim?",
+        "options": [
+          "Their most profitable position only",
+          "A confident explanation after the event",
+          "Dated forecasts, including the ones that failed"
+        ],
+        "answer": 2,
+        "explanation": "A selected success does not reveal the false-alarm rate or establish repeatable forecasting skill."
+      }
     },
     {
       "id": "2-3",
@@ -233,7 +293,17 @@ const CONTENT = {
         "Exposure rises and average cost falls.",
         "The investment’s intrinsic value rises."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "A convergence position is losing money, as in LTCM’s case. Before adding, what deserves priority?",
+        "options": [
+          "A lower average cost alone",
+          "Interim losses, funding demands, and total exposure",
+          "The amount needed to recover yesterday’s loss"
+        ],
+        "answer": 1,
+        "explanation": "A convergence view does not supply cash. Adding exposure can shorten the time available for the thesis to work."
+      }
     },
     {
       "id": "2-4",
@@ -262,7 +332,17 @@ const CONTENT = {
         "A promise never to sell.",
         "A thesis, review horizon, and invalidation conditions."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "In Buffett’s wager, the funds-of-funds led in the first year. How should the agreed comparison be judged?",
+        "options": [
+          "Declare the wager decided after that year",
+          "Keep moving the end date to favour the leader",
+          "Use the agreed decade and returns after fees"
+        ],
+        "answer": 2,
+        "explanation": "The time horizon was part of the question. Changing it after seeing results changes the comparison."
+      }
     },
     {
       "id": "3-1",
@@ -291,7 +371,17 @@ const CONTENT = {
         "Only a permanent loss of intrinsic value.",
         "A change in the investor’s favourite chart colour."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "LTCM faces urgent cash demands. Which statement addresses survival?",
+        "options": [
+          "The position has enough funding for the next demand",
+          "The spread must eventually narrow",
+          "The managers have strong credentials"
+        ],
+        "answer": 0,
+        "explanation": "A claim about eventual value and a claim about near-term funding need separate evidence."
+      }
     },
     {
       "id": "3-2",
@@ -320,7 +410,17 @@ const CONTENT = {
         "I ignored a defined warning; I will add an escalation step.",
         "I must never make another mistake."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "You investigate Knight’s loss. Which conclusion can improve a process?",
+        "options": [
+          "The outcome was bad, so every decision was wrong",
+          "Identify the ignored warnings and failed controls",
+          "Never examine an incident that has already ended"
+        ],
+        "answer": 1,
+        "explanation": "Specific failure points can support a testable control change. A general judgment about luck cannot."
+      }
     },
     {
       "id": "3-3",
@@ -349,7 +449,17 @@ const CONTENT = {
         "All market orders execute at one price.",
         "Available buying interest at that price may be too small."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "The Flash Crash leaves a thin order book. How should a large sale be estimated?",
+        "options": [
+          "Multiply the last quote by every share",
+          "Assume normal depth will return immediately",
+          "Examine available depth across price levels"
+        ],
+        "answer": 2,
+        "explanation": "A top-of-book quote covers limited quantity. Selling a larger amount may reach lower bids."
+      }
     },
     {
       "id": "3-4",
@@ -378,7 +488,17 @@ const CONTENT = {
         "Accept it because the expert is well known.",
         "Reject it solely to prove independence."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "A prestigious manager cites gross performance. What does Buffett’s wager suggest comparing?",
+        "options": [
+          "The investor’s return after all relevant fees",
+          "The manager’s reputation alone",
+          "Only the best year"
+        ],
+        "answer": 0,
+        "explanation": "The wager focused on what investors kept over the evaluation period, not merely credentials or gross gains."
+      }
     },
     {
       "id": "4-1",
@@ -407,7 +527,17 @@ const CONTENT = {
         "Nothing by itself about its expected return.",
         "That the market owes you a recovery."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "After a large loss, your choices are narrowing. What is a useful lesson from LTCM’s funding pressure?",
+        "options": [
+          "Increase risk until the old balance is restored",
+          "Protect remaining flexibility before chasing recovery",
+          "Past success ensures another rescue"
+        ],
+        "answer": 1,
+        "explanation": "The comparison concerns constraints, not a diagnosis of anyone’s emotions. Preserving room to act is different from demanding a recovery."
+      }
     },
     {
       "id": "4-2",
@@ -436,7 +566,17 @@ const CONTENT = {
         "How much leverage is available.",
         "The goal, contributions, horizon, and risk capacity."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "Your savings target requires a quick doubling. How should you use Buffett’s ten-year comparison?",
+        "options": [
+          "As proof that returns arrive whenever needed",
+          "As a promise that every decade will repeat it",
+          "As a reminder to separate goals from available returns"
+        ],
+        "answer": 2,
+        "explanation": "A historical comparison cannot manufacture an opportunity to meet a personal deadline."
+      }
     },
     {
       "id": "4-3",
@@ -465,7 +605,17 @@ const CONTENT = {
         "The existence of a stated trigger.",
         "That an investor has written down a plan."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "A currency policy ends abruptly, as in the SNB case. What should a pre-event risk plan allow for?",
+        "options": [
+          "Gaps and execution away from an intended stop price",
+          "Guaranteed execution at the stop trigger",
+          "No loss because the policy used to be stable"
+        ],
+        "answer": 0,
+        "explanation": "A risk limit expressed as an order is still subject to the available market and the order’s terms."
+      }
     },
     {
       "id": "4-4",
@@ -494,7 +644,17 @@ const CONTENT = {
         "Whether the sources are genuinely independent.",
         "Whether the price has already risen."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "Many posts repeat a GameStop explanation. Which check improves your evidence?",
+        "options": [
+          "Count reposts as independent studies",
+          "Trace the claim to transaction evidence and its source",
+          "Treat popularity as proof of value"
+        ],
+        "answer": 1,
+        "explanation": "Repeated claims can share one origin. Independent evidence and the mechanism are more informative than repetition."
+      }
     },
     {
       "id": "5-1",
@@ -523,7 +683,17 @@ const CONTENT = {
         "Only the eventual outcome.",
         "The dated information available before the action."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "You are reconstructing the Flash Crash. Which evidence should lead?",
+        "options": [
+          "A dramatic story written afterward",
+          "Only the closing price",
+          "Time-stamped trading and liquidity records"
+        ],
+        "answer": 2,
+        "explanation": "Sequenced records help distinguish causes and responses that a retrospective anecdote may collapse together."
+      }
     },
     {
       "id": "5-2",
@@ -552,7 +722,17 @@ const CONTENT = {
         "The amount originally received.",
         "Exactly 100% of the initial proceeds."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "GameStop rises sharply while some shorts cover. Which conclusion stays within the evidence?",
+        "options": [
+          "Covering can contribute without explaining the entire rise",
+          "All buying must be forced covering",
+          "A squeeze label places a ceiling on short-sale losses"
+        ],
+        "answer": 0,
+        "explanation": "The SEC staff report separated short-covering intervals from the sustained rise. Short-sale losses still have no fixed price ceiling."
+      }
     },
     {
       "id": "5-3",
@@ -581,7 +761,17 @@ const CONTENT = {
         "As historical analysis to read alongside modern rules.",
         "As proof that all price movements are artificial."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "You study old market tactics alongside Knight’s SEC case. What is the right approach?",
+        "options": [
+          "Assume historical practice is still permitted",
+          "Check current obligations and working controls",
+          "Treat an old memoir as a regulatory exemption"
+        ],
+        "answer": 1,
+        "explanation": "Knight involved operational failures, not the same historical conduct. Both illustrate why context and present obligations matter."
+      }
     },
     {
       "id": "5-4",
@@ -610,7 +800,17 @@ const CONTENT = {
         "The appearance of their offices.",
         "The starting population, including failures and exits."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "A profile lists only celebrated surviving funds. What would SPIVA’s approach add?",
+        "options": [
+          "More quotations from famous managers",
+          "The largest recent winner",
+          "The full starting population and appropriate benchmarks"
+        ],
+        "answer": 2,
+        "explanation": "A complete denominator prevents the comparison from quietly improving when weak funds disappear."
+      }
     },
     {
       "id": "6-1",
@@ -639,7 +839,17 @@ const CONTENT = {
         "That operating cash flow increased by the same amount.",
         "That the investment is now less risky."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "GameStop’s market value rises. What can you conclude without further business evidence?",
+        "options": [
+          "The market valuation rose; operating cash may not have",
+          "The company received the same amount in cash",
+          "The share is automatically safer"
+        ],
+        "answer": 0,
+        "explanation": "Secondary-market price changes do not automatically transfer the increase into the company’s bank account."
+      }
     },
     {
       "id": "6-2",
@@ -668,7 +878,17 @@ const CONTENT = {
         "Quadruple shares while proportionally reducing the per-share price.",
         "Remove the company’s debts."
       ],
-      "answer": 1
+      "answer": 1,
+      "scenario": {
+        "question": "A corporate deal looks attractive before financing. What does the LTCM comparison remind you to inspect?",
+        "options": [
+          "Only the new per-share price",
+          "Borrowing terms, collateral demands, and liquidity",
+          "Only the promotional presentation"
+        ],
+        "answer": 1,
+        "explanation": "This is a funding analogy, not a claim that LTCM was a merger case. Attractive economics still need feasible financing."
+      }
     },
     {
       "id": "6-3",
@@ -697,7 +917,17 @@ const CONTENT = {
         "That its last reported return will repeat.",
         "No guaranteed return; it addresses specified conduct and obligations."
       ],
-      "answer": 2
+      "answer": 2,
+      "scenario": {
+        "question": "A regulated trading firm says its controls are documented. What follows from Knight’s case?",
+        "options": [
+          "Documentation eliminates all operating risk",
+          "Regulation guarantees profits",
+          "Ask whether controls are tested and effective in production"
+        ],
+        "answer": 2,
+        "explanation": "Written policies and effective implementation are different. Oversight does not promise investment returns."
+      }
     },
     {
       "id": "6-4",
@@ -726,7 +956,17 @@ const CONTENT = {
         "A low number always proves that a stock is cheap.",
         "Fees never matter when the P/E is low."
       ],
-      "answer": 0
+      "answer": 0,
+      "scenario": {
+        "question": "You apply Buffett’s wager to a new investment decision. What is a defensible takeaway?",
+        "options": [
+          "Compare costs and future scenarios without promising a repeat",
+          "The next decade must produce the same winner",
+          "Current valuation is irrelevant"
+        ],
+        "answer": 0,
+        "explanation": "The wager supplies a historical comparison, not a forecast for every manager, market, or starting valuation."
+      }
     }
   ],
   "cases": [
